@@ -1,9 +1,17 @@
 import React, {Component, Fragment} from 'react';
 import {PropTypes} from 'prop-types';
 import styled from 'styled-components';
-
+import { Fab } from 'rmwc/Fab';
 import NotesListItem from './NotesListItem';
 import { List } from 'rmwc/List';
+
+const AddNote = styled(Fab)`
+  background-color: ${props => props.theme.primary.base}!important;
+  color: #fff!important;
+  position: fixed!important;
+  bottom: 12px;
+  right: 12px;
+`
 
 class NotesList extends Component {
   
@@ -42,9 +50,12 @@ class NotesList extends Component {
 
   render(){
     return(
-      <List>
-        {this.renderList()}
-      </List>
+      <Fragment>
+        <List>
+          {this.renderList()}
+        </List>
+        <AddNote>add</AddNote>
+      </Fragment>
     );
   }
 }
