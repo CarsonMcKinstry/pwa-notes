@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {PropTypes} from 'prop-types';
 import styled from 'styled-components';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import {
   TopAppBar, 
@@ -18,6 +19,11 @@ import {
 } from 'rmwc/Menu';
 import { Icon } from 'rmwc/Icon';
 import { ListItem, ListItemText, ListItemGraphic, ListDivider } from 'rmwc/List';
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: initial;
+`
 
 const TopAppBarTitleSection = styled(TopAppBarSection)`
 
@@ -77,10 +83,12 @@ class AppBar extends Component {
                   open={this.state.menuOpen}
                   onClose={_ => this.setState({menuOpen: false})}
                 >
-                  <MenuItem>
-                    <ListItemGraphic use="insert_drive_file"/>
-                    <ListItemText>Notes</ListItemText>
-                  </MenuItem>
+                  <StyledLink to="/">
+                    <MenuItem>
+                      <ListItemGraphic use="insert_drive_file"/>
+                      <ListItemText>Notes</ListItemText>
+                    </MenuItem>
+                  </StyledLink>
                   <ListDivider/>
                   <MenuItem>
                     <ListItemGraphic use="delete"/>
