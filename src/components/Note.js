@@ -69,7 +69,7 @@ const NoteArea = styled(props => <DebouncedInput {...props} element="textarea"/>
   line-height: 1.5;
   height: calc(100% - 36px);
   box-sizing: border-box;
-  padding: 6px 12px;
+  padding: 6px 12px 48px;
   width: 100%;
   border: 0;
   &:focus {

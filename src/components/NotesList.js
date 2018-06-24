@@ -13,6 +13,10 @@ const AddNote = styled(Fab)`
   right: 12px;
 `
 
+const FabFix = styled.div`
+  padding-top: 72px;
+`
+
 class NotesList extends Component {
   
   state = {
@@ -54,6 +58,7 @@ class NotesList extends Component {
         <List>
           {this.renderList()}
         </List>
+        <FabFix/>
         <AddNote>add</AddNote>
       </Fragment>
     );
