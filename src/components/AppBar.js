@@ -15,6 +15,7 @@ import {
 import {
   MenuAnchor, Menu, MenuItem
 } from 'rmwc/Menu';
+import { Icon } from 'rmwc/Icon';
 
 const TopAppBarTitleSection = styled(TopAppBarSection)`
 
@@ -45,9 +46,12 @@ class AppBar extends Component {
                   open={this.state.menuOpen}
                   onClose={_ => this.setState({menuOpen: false})}
                 >
-                  <MenuItem>Completed</MenuItem>
-                  <MenuItem>Incomplete</MenuItem>
-                  <MenuItem>All</MenuItem>
+                  <MenuItem>
+                    <Icon use="home"/> Home
+                  </MenuItem>
+                  <MenuItem>
+                    <Icon use="delete"/> Trash
+                  </MenuItem>
                 </Menu>
 
                 <TopAppBarActionItem
