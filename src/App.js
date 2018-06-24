@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {PropTypes} from 'prop-types';
 import faker from 'faker';
 import AppBar from './components/AppBar';
+import NotesList from './components/NotesList';
 
 const notes = Array
   .apply(null, Array(100))
@@ -23,6 +24,7 @@ class App extends Component {
     return(
       <Fragment>
         <AppBar/>
+        <NotesList notes={notes}/>
       </Fragment>
     );
   }
