@@ -50,7 +50,7 @@ class NotesListItem extends Component {
   }
 
   handleItemPress = (e) => {
-    // this will eventually be for linking to the next page
+    this.props.onClick(this.props.note.id);
   }
 
   handleSwipeLeft = (e, d, f) => {

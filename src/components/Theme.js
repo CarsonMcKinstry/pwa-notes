@@ -22,6 +22,11 @@ injectGlobal`
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
+    height: 100%;
+  }
+
+  #root {
+    height: 100%;
   }
   
   :root {

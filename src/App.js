@@ -4,6 +4,8 @@ import faker from 'faker';
 import AppBar from './components/AppBar';
 import NotesList from './components/NotesList';
 import moment from 'moment';
+import { Switch, Route } from 'react-router-dom'; 
+import Note from './components/Note';
 
 const notes = Array
   .apply(null, Array(100))
@@ -18,14 +20,24 @@ const notes = Array
 class App extends Component {
 
   state = {
-    addPage: false
+    addPage: false,
+    title: 'PWA Notes'
+  }
+
+  setTitle = (title) => {
+    this.setState({
+      title
+    })
   }
 
   render(){
     return(
       <Fragment>
-        <AppBar/>
-        <NotesList notes={notes}/>
+        <AppBar title={this.state.title}/>
+        <Switch>
+          <Route exact path="/" render={(props) => <NotesList {...props} notes={notes} setTitle={this.setTitle}/>}/>
+          <Route exact path="/:id" render={(props) => <Note {...props} setTitle={this.setTitle}/>}/>
+        </Switch>
       </Fragment>
     );
   }

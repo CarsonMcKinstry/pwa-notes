@@ -10,6 +10,14 @@ class NotesList extends Component {
   state = {
     swipedItem: null
   }
+  
+  componentWillMount() {
+    this.props.setTitle('PWA Notes');
+  }
+
+  handleNotePress = (id) => {
+    this.props.history.push(`/${id}`);
+  }
 
   handleDeletePress = (id) => {
     console.log(id);
@@ -17,6 +25,7 @@ class NotesList extends Component {
 
   renderList = () => this.props.notes.map(note => (
     <NotesListItem 
+      onClick={this.handleNotePress}
       onDelete={this.handleDeletePress} 
       onSwipe={this.setSwipedItem}
       swiped={ note.id === this.state.swipedItem }
