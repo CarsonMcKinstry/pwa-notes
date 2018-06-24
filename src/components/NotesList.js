@@ -7,6 +7,10 @@ import { List } from 'rmwc/List';
 
 class NotesList extends Component {
   
+  state = {
+    swipedItem: null
+  }
+
   handleDeletePress = (id) => {
     console.log(id);
   }
@@ -14,10 +18,18 @@ class NotesList extends Component {
   renderList = () => this.props.notes.map(note => (
     <NotesListItem 
       onDelete={this.handleDeletePress} 
+      onSwipe={this.setSwipedItem}
+      swiped={ note.id === this.state.swipedItem }
       key={note.id} 
       note={note}
     />
   ));
+
+  setSwipedItem = (id) => {
+    this.setState({
+      swipedItem: id
+    });
+  }
 
   render(){
     return(

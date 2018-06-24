@@ -38,10 +38,6 @@ const StyledListItemText = styled(({swiped, ...props}) => <ListItemText {...prop
 
 class NotesListItem extends Component {
 
-  state = {
-    swiped: false
-  }
-
   handleDeletePress = (e) => {
     const { note } = this.props;
     e.stopPropagation();
@@ -53,15 +49,11 @@ class NotesListItem extends Component {
   }
 
   handleSwipeLeft = (e, d, f) => {
-    this.setState({
-      swiped: true
-    });
+    this.props.onSwipe(this.props.note.id)
   }
 
   handleSwipeRight = (e, d, f) => {
-    this.setState({
-      swiped: false
-    });
+    this.props.onSwipe(null);
   }
 
   render(){
@@ -72,14 +64,14 @@ class NotesListItem extends Component {
       >
         <ListItem onClick={this.handleItemPress}>
           <StyledListItemText
-            swiped={this.state.swiped}
+            swiped={this.props.swiped}
           >
             {this.props.note.title}
             <ListItemSecondaryText>Hello Date</ListItemSecondaryText>
           </StyledListItemText>
           <DeleteButton 
             onClick={this.handleDeletePress}
-            swiped={this.state.swiped}
+            swiped={this.props.swiped}
           >
             <Icon use="delete"/>
           </DeleteButton>
