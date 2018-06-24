@@ -3,14 +3,15 @@ import {PropTypes} from 'prop-types';
 import faker from 'faker';
 import AppBar from './components/AppBar';
 import NotesList from './components/NotesList';
+import moment from 'moment';
 
 const notes = Array
   .apply(null, Array(100))
   .map((_, i) => {
     return {
       id: i,
-      title: faker.commerce.productName(),
-      body: faker.lorem.paragraphs(3)
+      body: faker.lorem.paragraphs(3),
+      createdAt: moment().add(Math.random() * 10, 'minutes').toISOString()
     }
   })
 
