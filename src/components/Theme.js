@@ -7,6 +7,11 @@ const theme = {
     base: '#1e88e5',
     light: '#6ab7ff',
     dark: '#005cb2'
+  },
+  danger: {
+    base: '#f44336',
+    light: '#ff7961',
+    dark: '#ba000d'
   }
 }
 
