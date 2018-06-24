@@ -6,7 +6,8 @@ import { Icon } from 'rmwc/Icon';
 import faker from 'faker';
 import moment from 'moment';
 import DebouncedInput from 'react-debounce-input';
-
+import { Fab } from 'rmwc/Fab';
+import { Menu, MenuAnchor, MenuItem } from 'rmwc/Menu';
 function debounce(fn, w, imm) {
   let timeout;
   return function() {
@@ -86,11 +87,27 @@ const NoteStatusIcons = styled.div`
   color: rgba(0,0,0,0.54);
 `
 
+const OpenMenu = styled(Fab)`
+  background-color: ${ props => props.theme.primary.base }!important;
+  color: #fff!important;
+  position: fixed!important;
+  bottom: 12px;
+  right: 12px;
+`
+
+const PlacedMenu = styled(MenuAnchor)`
+  background: transparent;
+  position: fixed!important;
+  bottom: 56px;
+  right: 12px;
+`
+
 class Note extends Component {
 
   state = {
     isSaving: false,
     note: faker.lorem.paragraphs(5),
+    menuOpen: false
   }
 
   componentWillMount() {
@@ -144,6 +161,15 @@ class Note extends Component {
           debounceTimeout={1000}
           onChange={this.handleNoteChange}
         />
+        <PlacedMenu element="span">
+          <Menu
+            open={this.state.menuOpen}
+            onClose={e => this.setState({menuOpen: false})}
+          >
+            <MenuItem>Delete</MenuItem>
+          </Menu>
+          <OpenMenu mini onClick={e => this.setState({menuOpen: true})}>menu</OpenMenu>
+        </PlacedMenu>
       </NotePage>
     );
   }
