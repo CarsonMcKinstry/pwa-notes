@@ -16,6 +16,7 @@ import {
   MenuAnchor, Menu, MenuItem
 } from 'rmwc/Menu';
 import { Icon } from 'rmwc/Icon';
+import { ListItem, ListItemText, ListItemGraphic, ListDivider } from 'rmwc/List';
 
 const TopAppBarTitleSection = styled(TopAppBarSection)`
 
@@ -47,10 +48,13 @@ class AppBar extends Component {
                   onClose={_ => this.setState({menuOpen: false})}
                 >
                   <MenuItem>
-                    <Icon use="home"/> Home
+                    <ListItemGraphic use="home"/>
+                    <ListItemText>Home</ListItemText>
                   </MenuItem>
+                  <ListDivider/>
                   <MenuItem>
-                    <Icon use="delete"/> Trash
+                    <ListItemGraphic use="delete"/>
+                    <ListItemText>Trash</ListItemText>
                   </MenuItem>
                 </Menu>
 
