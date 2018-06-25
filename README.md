@@ -2,9 +2,11 @@
 
 A simple example application, demonstrating the basics of how to turn a web application into a PWA.
 
+Over the past month or so, I've been working on a project for work, coming up with the solution for our users who are in remote parts of the country side for a majority of their workday. Obviously, it's important for them to be able to do their job. Enter Progressive Web Apps
+
 ## What is a PWA?
 
-[According to the team at Google](https://developers.google.com/web/progressive-web-apps/), a progressive web app (PWA) is a web application that takes advantage of some of the latest browser features in order to make an app that is **reliable**, **fast**, and **engaging**. 
+[According to the team at Google](https://developers.google.com/web/progressive-web-apps/), a Progressive Web App (PWA) is a web application that takes advantage of some of the latest browser features in order to make an app that is **reliable**, **fast**, and **engaging**. 
 
   - **Reliable** - the app can and does load instantly, regardless of the user's connection
   - **Fast** - once the site is loaded, users expect it to be fast; this means smooth animations and "no janky scrolling [sic]"
@@ -12,7 +14,7 @@ A simple example application, demonstrating the basics of how to turn a web appl
 
 ## But why?
 
-The world is moving toward the web, for better or worse. To keep up with this shift, companies have been creating web applications, as opposed to native applications. <!-- need to come up with some examples --> PWAs make this possible. With the inclusion of a web manifest, some of the normal features you would expect from a native mobile app are possible in a PWA*. Your app can go fullscreen, it will for the most part, work offline, and you can even send your users push notifications. You also have access to a multitude of sensors and features that the device comes equipped with. 
+The world is moving toward the web, for better or worse. To keep up with this shift, companies have been creating web applications, as opposed to native applications. <!-- TODO: need to come up with some examples --> PWAs make this possible. With the inclusion of a web manifest, some of the normal features you would expect from a native mobile app are possible in a PWA*. Your app can go fullscreen, it will for the most part, work offline, and you can even send your users push notifications. You also have access to a multitude of sensors and features that the device comes equipped with. 
 
 Having a native, or native-like, application can increase your adoption rate. Google gives an example of [AliExpress](https://developers.google.com/web/showcase/2016/aliexpress), who saw
 
@@ -22,8 +24,7 @@ Having a native, or native-like, application can increase your adoption rate. Go
 
 These are pretty significant numbers in terms of conversion rates, and all of this was done with the help of PWAs.
 
-> ### * Caveats
-> 
+
 > With the introduction of iOS 11.3, PWAs are supported on iPhones. However, the `manifest.json` implementation is still a little buggy, and there are still some features that don't currently work (i.e. Push Notifications, Background Sync). A lot of these issues, however, can be solved by using the [apple related link and meta tags](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html) in your HTML file. Luckily, some of these features will be coming in future iOS updates. In general, however, PWAs will still work on iPhones and iPads.
 > 
 > As well, PWAs are not mobile applications. There is access to device features that are not available to PWAs. Here's a great list of features you have access to right now in your current browser: [What Can Web Do Today?](https://whatwebcando.today/) As time passes, this list will get better and better. 
@@ -141,7 +142,7 @@ class SwipeableComponent extends React.Component {
 
 ```
 
-<!-- Need to add the page switch animation here -->
+<!-- TODO: Need to add the page switch animation here -->
 
 #### Menu Navigation
 
@@ -344,8 +345,7 @@ This is a pretty simplistic manifest, and is what's included with `create-react-
   "scope": "/"
 }
 ```
-> ### Caveat
-> 
+
 > iOS is still a bit behind with manifest files. At present, manifest files are buggy, and the icons won't show. A lot of the reasoning behind this is that Apple has had non-standard <link/> and <meta/> tags. More information can be found in [Apple's Web Developer Documentation](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html). This information is somewhat outdated, but should work regardless of what is put into the manifest. Once manifest support is fully rolled out, if ever, this shouldn't be an issue.
 
 
@@ -415,3 +415,90 @@ For More information about Service Workers:
 
 ### IndexedDB
 
+IndexedDB is a client-side storage solution for large amounts of **structured** data, including files and blobs. First and foremost, IndexedDB is a transactional NoSQL database, which means we can interact with it in a similar fashion to MongoDB. 
+
+Again we've run into an API that is a little more complex than we need, so we are going to use a wrapper that was written for interacting with IDB in a meaningful way. We're using [`Dexie`](https://www.dexie.org) in these examples, but there are plenty of others suggested by [MDN](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API).
+
+```javascript
+import Dexie from 'dexie';
+
+// create our database interface
+const db = new Dexie('my_database');
+
+db
+  // attach our version
+  .version(1)
+  // attach our stores
+  .stores({
+    // <store name>: <indexed schema>
+    friends: '++id,name,age'
+  });
+
+// insert a friend into the store
+db.friends.put({name: 'Carson', age: 24})
+  // get the friend back out of the store
+  .then(() => db.friends.get({name: 'Carson'}))
+  // log the friend to the console
+  .then(friend => {
+    console.log(friend);
+  })
+  // catch any errors
+  .catch(err => {
+    console.error(err);
+  });
+
+```
+
+The general flow of using Dexie is:
+
+1. open an instance of a database
+2. define the version and stores you are interacting with
+3. read and write data to the database
+
+If you ever need to create a new version of the database, Dexie provides an interface for upgrading all of the objects in your store.
+ 
+> Different browsers have different storage limits and retention policies, so you need to be aware of this when you are building your database solution
+> 
+> - Chrome - per origin (app) up to 6% of the free disk space
+> - FireFox - per origin (app) up to 10% of free disk space, but prompts after 50MB
+> - Safari 
+>   - Desktop - unlimited, but prompts after 5MB 
+>   - Mobile - per origin (app) up to 50MB, **and clears after a time**
+> - IE 10+ - per origin (app) up to 250mb, but prompts after 10MB
+> - Edge - ???
+
+*So, how do we see what's going on in the database once we've created it?*
+
+Luckily, Chrome has been on top of this and introduced a tool inside of the `Application` tab in the dev console which gives you access to view and work with the documents that are currently stored in your app.
+
+## Next Steps
+
+Hopefully, this has given you a good intro into working with PWAs and a sliver of the technologies associated with it. While some aspects of PWAs are still in relative flux, a majority of the APIs and tools have stabilized, allowing us to start working with them today. The only thing we're waiting for is for individual implementations to go to production (I'm looking at you IE and Safari). 
+
+For further reading, check out:
+
+- [Progressive Web Apps @ Google](https://developers.google.com/web/progressive-web-apps/)
+- [Progressive Web Apps on Wikipedia](https://en.wikipedia.org/wiki/Progressive_Web_Apps)
+
+## Want to try out the demo?
+
+To view the app without allowing service workers:
+
+```
+git clone https://github.com/CarsonMcKinstry/pwa-notes.git
+cd pwa-notes
+```
+npm
+
+```
+npm install
+npm start
+```
+
+yarn
+```
+yarn install
+yarn start
+```
+
+To view the app in production, with full offline support: [react-pwa-notes.herokuapp.com](https://react-pwa-notes.herokuapp.com)
