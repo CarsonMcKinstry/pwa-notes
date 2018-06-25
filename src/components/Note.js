@@ -88,7 +88,7 @@ const NoteStatusIcons = styled.div`
 `
 
 const OpenMenu = styled(Fab)`
-  background-color: ${ props => props.theme.primary.base }!important;
+  background-color: ${ props => props.theme.secondary.base }!important;
   color: #fff!important;
   position: fixed!important;
   bottom: 12px;
@@ -168,7 +168,7 @@ class Note extends Component {
           >
             <MenuItem>Delete</MenuItem>
           </Menu>
-          <OpenMenu mini onClick={e => this.setState({menuOpen: true})}>menu</OpenMenu>
+          <OpenMenu mini onClick={e => this.setState({menuOpen: !this.state.menuOpen})}>menu</OpenMenu>
         </PlacedMenu>
       </NotePage>
     );

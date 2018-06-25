@@ -65,7 +65,7 @@ class NotesListItem extends Component {
 
     const { note } = this.props;
 
-    const [ first, secondLine, ...rest] = note.body.split(/\n\r?/g);
+    const [ first, secondLine, ...rest] = note.body.split('.');
 
     return(
       <Swipeable

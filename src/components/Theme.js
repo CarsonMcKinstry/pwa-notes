@@ -8,6 +8,11 @@ const theme = {
     light: '#6ab7ff',
     dark: '#005cb2'
   },
+  secondary: {
+    base: '#8bc34a',
+    light: '#bef67a',
+    dark: '#5a9216'
+  },
   danger: {
     base: '#f44336',
     light: '#ff7961',
@@ -31,6 +36,7 @@ injectGlobal`
   
   :root {
     --mdc-theme-primary: ${theme.primary.base}!important;
+    --mdc-theme-secondary: ${theme.secondary.base}!important;
   }
 
 `

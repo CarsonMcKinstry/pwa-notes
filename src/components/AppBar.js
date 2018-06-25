@@ -84,16 +84,18 @@ class AppBar extends Component {
                   onClose={_ => this.setState({menuOpen: false})}
                 >
                   <StyledLink to="/">
-                    <MenuItem>
+                    <MenuItem onClick={() => this.setState({menuOpen: false})}>
                       <ListItemGraphic use="insert_drive_file"/>
                       <ListItemText>Notes</ListItemText>
                     </MenuItem>
                   </StyledLink>
                   <ListDivider/>
-                  <MenuItem>
-                    <ListItemGraphic use="delete"/>
-                    <ListItemText>Trash</ListItemText>
-                  </MenuItem>
+                  <StyledLink to="/trash">
+                    <MenuItem onClick={() => this.setState({menuOpen: false})}>
+                      <ListItemGraphic use="delete"/>
+                      <ListItemText>Trash</ListItemText>
+                    </MenuItem>
+                  </StyledLink>
                 </Menu>
 
                 <TopAppBarActionItem

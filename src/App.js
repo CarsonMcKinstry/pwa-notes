@@ -3,6 +3,7 @@ import {PropTypes} from 'prop-types';
 import faker from 'faker';
 import AppBar from './components/AppBar';
 import NotesList from './components/NotesList';
+import TrashList from './components/TrashList';
 import moment from 'moment';
 import { Switch, Route } from 'react-router-dom'; 
 import Note from './components/Note';
@@ -36,7 +37,8 @@ class App extends Component {
         <AppBar title={this.state.title}/>
         <Switch>
           <Route exact path="/" render={(props) => <NotesList {...props} notes={notes} setTitle={this.setTitle}/>}/>
-          <Route exact path="/:id" render={(props) => <Note {...props} setTitle={this.setTitle}/>}/>
+          <Route exact path="/notes/:id" render={(props) => <Note {...props} setTitle={this.setTitle}/>}/>
+          <Route exact path="/trash" render={(props) => <TrashList {...props} notes={notes} setTitle={this.setTitle}/>}/>
         </Switch>
       </Fragment>
     );

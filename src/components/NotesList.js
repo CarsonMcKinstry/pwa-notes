@@ -6,7 +6,7 @@ import NotesListItem from './NotesListItem';
 import { List } from 'rmwc/List';
 
 const AddNote = styled(Fab)`
-  background-color: ${props => props.theme.primary.base}!important;
+  background-color: ${props => props.theme.secondary.base}!important;
   color: #fff!important;
   position: fixed!important;
   bottom: 12px;
@@ -28,7 +28,7 @@ class NotesList extends Component {
   }
 
   handleNotePress = (id) => {
-    this.props.history.push(`/${id}`);
+    this.props.history.push(`/notes/${id}`);
   }
 
   handleDeletePress = (id) => {
