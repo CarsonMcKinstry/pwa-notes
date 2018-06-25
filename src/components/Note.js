@@ -109,7 +109,6 @@ const StyledMarkdown = styled(Markdown)`
   padding: 6px 12px 48px;
   font-size: 1em;
   line-height: 1.5;
-  height: calc(100% - 36px);
   box-sizing: border-box;
 `
 
