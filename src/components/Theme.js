@@ -4,14 +4,14 @@ import { ThemeProvider, injectGlobal } from 'styled-components';
 
 const theme = {
   primary: {
-    base: '#1e88e5',
-    light: '#6ab7ff',
-    dark: '#005cb2'
+    base: '#0d47a1',
+    light: '#5472d3',
+    dark: '#002171'
   },
   secondary: {
-    base: '#8bc34a',
-    light: '#bef67a',
-    dark: '#5a9216'
+    base: '#81c784',
+    light: '#b2fab4',
+    dark: '#519657'
   },
   danger: {
     base: '#f44336',

@@ -8,6 +8,8 @@ import moment from 'moment';
 import DebouncedInput from 'react-debounce-input';
 import { Fab } from 'rmwc/Fab';
 import { Menu, MenuAnchor, MenuItem } from 'rmwc/Menu';
+import { ListDivider, ListItemText, ListItemGraphic } from 'rmwc';
+import Markdown from 'react-markdown';
 function debounce(fn, w, imm) {
   let timeout;
   return function() {
@@ -42,6 +44,7 @@ const SavingIcon = styled(({isSaving, ...props}) => <Icon {...props}/>)`
   animation-timing-function: ease-out;
   animation-duration: 1s;
   animation-name: ${props => props.isSaving ? savingAnimation : null};
+  margin-left: 6px;
 `;
 
 const NotePage = styled(Swipeable)`
@@ -102,12 +105,21 @@ const PlacedMenu = styled(MenuAnchor)`
   right: 12px;
 `
 
+const StyledMarkdown = styled(Markdown)`
+  padding: 6px 12px 48px;
+  font-size: 1em;
+  line-height: 1.5;
+  height: calc(100% - 36px);
+  box-sizing: border-box;
+`
+
 class Note extends Component {
 
   state = {
     isSaving: false,
     note: faker.lorem.paragraphs(5),
-    menuOpen: false
+    menuOpen: false,
+    editing: false
   }
 
   componentWillMount() {
@@ -150,23 +162,40 @@ class Note extends Component {
             { moment().format('ddd, D MMM. \'YY @ H:mm')}
           </NoteDate>
           <NoteStatusIcons>
+            <Icon 
+              onClick={e => this.setState({editing: !this.state.editing})}
+              use={ this.state.editing ? 'edit' : 'remove_red_eye'}
+            />
             <SavingIcon 
               isSaving={this.state.isSaving} 
               use={this.state.isSaving ? 'autorenew' : 'done'}
             />
           </NoteStatusIcons>
         </NoteTopBar>
-        <NoteArea 
-          value={this.state.note}
-          debounceTimeout={1000}
-          onChange={this.handleNoteChange}
-        />
+        {
+          this.state.editing
+            ? <NoteArea 
+                value={this.state.note}
+                debounceTimeout={1000}
+                onChange={this.handleNoteChange}
+              />
+            : <StyledMarkdown source={this.state.note}/>
+
+        }
         <PlacedMenu element="span">
           <Menu
             open={this.state.menuOpen}
             onClose={e => this.setState({menuOpen: false})}
           >
-            <MenuItem>Delete</MenuItem>
+            <MenuItem onClick={e => this.setState({editing: !this.state.editing})}>
+              <ListItemGraphic use={ this.state.editing ? 'edit' : 'remove_red_eye'} />
+              <ListItemText>{ this.state.editing ? 'View' : 'Edit' }</ListItemText>
+            </MenuItem>
+            <ListDivider/>
+            <MenuItem>
+              <ListItemGraphic use="delete"/>
+              <ListItemText>Delete</ListItemText>
+            </MenuItem>
           </Menu>
           <OpenMenu mini onClick={e => this.setState({menuOpen: !this.state.menuOpen})}>menu</OpenMenu>
         </PlacedMenu>

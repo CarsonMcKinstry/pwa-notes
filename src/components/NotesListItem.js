@@ -76,7 +76,7 @@ class NotesListItem extends Component {
           <StyledListItemText
             swiped={this.props.swiped}
           >
-            {first}
+            {first.replace(/^#/g, '')}
             <ListItemSecondaryText>
               {moment(note.createdAt).format('D/M/YY')} - {secondLine}
             </ListItemSecondaryText>

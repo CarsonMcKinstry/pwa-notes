@@ -5,7 +5,8 @@ import {
   List,
   ListItem, 
   ListDivider,
-  ListItemText
+  ListItemText,
+  ListItemGraphic 
 } from 'rmwc/List';
 
 import { Checkbox } from 'rmwc/Checkbox';
@@ -92,10 +93,21 @@ class TrashList extends Component {
             open={this.state.menuOpen}
             onClose={e => this.setState({menuOpen: false})}
           >
-            <MenuItem>Delete Selected</MenuItem>
-            <MenuItem>Delete All</MenuItem>
+            <MenuItem>
+              <ListItemGraphic use="cached"/>
+              <ListItemText>Recover Selected</ListItemText>
+            </MenuItem>
+            <ListDivider/>
+            <MenuItem>
+              <ListItemGraphic use="delete_outline"/>
+              <ListItemText>Delete Selected</ListItemText>
+            </MenuItem>
+            <MenuItem>
+              <ListItemGraphic use="delete_forever"/>
+              <ListItemText>Delete All</ListItemText>
+            </MenuItem>
           </Menu>
-          <OpenMenu mini onClick={e => this.setState({menuOpen: !this.state.menuOpen})}>delete_forever</OpenMenu>
+          <OpenMenu mini onClick={e => this.setState({menuOpen: !this.state.menuOpen})}>menu</OpenMenu>
         </PlacedMenu>
       </Fragment>
     );
