@@ -1,8 +1,8 @@
-# PWA Notes
-
-A simple example application, demonstrating the basics of how to turn a web application into a PWA.
+# PWA Notes (CURRENTLY UNDER CONSTRUCTION)
 
 Over the past month or so, I've been working on a project for work, coming up with the solution for our users who are in remote parts of the country side for a majority of their workday. Obviously, it's important for them to be able to do their job. Enter Progressive Web Apps
+
+This is a demo application that demonstrates some of the techniques for giving your user the best possible web app experience.
 
 ## What is a PWA?
 
