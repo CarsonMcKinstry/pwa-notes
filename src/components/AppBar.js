@@ -45,6 +45,8 @@ class AppBar extends Component {
     if (this.props.location.pathname !== '/') {
       this.setState({hasBackButton: true})
     }
+
+    console.log(this.props);
   }
 
   componentWillReceiveProps(next) {
