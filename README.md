@@ -290,10 +290,8 @@ Here's a sample `manifest.json` file:
 ```json
 
 {
-  // the name on the home screen
   "short_name": "PWA notes",
   "name": "Progress Web App Notes",
-  // the icons for the screen size based on the user's device
   "icons": [
     {
       "src": "favicon.ico",
@@ -301,13 +299,9 @@ Here's a sample `manifest.json` file:
       "type": "image/x-icon"
     }
   ],
-  // the entry point for the application
   "start_url": "./index.html",
-  // how the app displays when launched from the home screen
   "display": "standalone",
-  // the color of non-app components, such as the phone's status bar
   "theme_color": "#000000",
-  // the background color of the app
   "background_color": "#ffffff"
 }
 
