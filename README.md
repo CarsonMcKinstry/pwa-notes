@@ -1,6 +1,6 @@
 # PWA Notes
 
-A simple example application, demonstrating how to turn a web application into a PWA
+A simple example application, demonstrating the basics of how to turn a web application into a PWA.
 
 ## What is a PWA?
 
@@ -355,7 +355,7 @@ This is all fine and dandy, but if our app doesn't work, to an extent, while you
 
 ### Service Workers
 
-This is the bread and butter of offline web applications. Service workers sit in between your application and the outside world, in essence controlling the network layer. Things you can do with service workers:
+This is the bread and butter of offline web applications. Service workers sit in between your application and the outside world, in essence controlling the network layer. This allows us to control how our application behaves when there isn't an internet connection. Things you can do with service workers:
 
 - Caching files
 - Caching network response
