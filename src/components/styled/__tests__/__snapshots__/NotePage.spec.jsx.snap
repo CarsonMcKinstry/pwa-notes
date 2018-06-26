@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NoteArea /> should render without crashing 1`] = `
+<Component
+  className="sc-bxivhb hwLkbW"
+/>
+`;
+
+exports[`<NotePage /> should render children 1`] = `
+<Swipeable
+  className="sc-bwzfXH jciCha"
+  delta={10}
+  disabled={false}
+  flickThreshold={0.6}
+  nodeName="div"
+  preventDefaultTouchmoveEvent={false}
+  rotationAngle={0}
+  stopPropagation={false}
+>
+  <div />
+</Swipeable>
+`;
+
+exports[`<NotePage /> should render without crashing 1`] = `
+<Swipeable
+  className="sc-bwzfXH jciCha"
+  delta={10}
+  disabled={false}
+  flickThreshold={0.6}
+  nodeName="div"
+  preventDefaultTouchmoveEvent={false}
+  rotationAngle={0}
+  stopPropagation={false}
+/>
+`;
+
+exports[`<NoteStatusIcons /> should render without crashing 1`] = `
+<div
+  className="sc-EHOje fxOPMV"
+>
+  menu
+</div>
+`;
+
+exports[`<NoteStatusIcons /> should render without crashing 2`] = `
+<div
+  className="sc-EHOje fxOPMV"
+>
+  menu
+</div>
+`;
+
+exports[`<NoteTopBar /> should render without crashing 1`] = `
+<div
+  className="sc-htpNat devkFR"
+/>
+`;
