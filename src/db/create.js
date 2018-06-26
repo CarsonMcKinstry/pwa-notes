@@ -1,7 +1,21 @@
 import curry from 'lodash/fp/curry';
+import moment from 'moment';
 
-export const getAllNotes = curry((db, _) => db //eslint-disable-line 
-  .where({ markedForDeletion: false })
-  .toArray());
+export const createNote = curry((db, body) => {
+  const createdAt = moment().toISOString();
+  return db.notes.add({
+    markedForDeletion: false,
+    body,
+    createdAt,
+    folder: null
+  });
+});
 
-export const getNote = curry((db, id) => db.find(id));
+export const createFolder = curry((db, name) => {
+  const createdAt = moment().toISOString();
+  return db.folders.add({
+    createdAt,
+    name,
+    markedForDeletion: false,
+  });
+});
