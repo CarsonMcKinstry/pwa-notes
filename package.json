@@ -16,6 +16,7 @@
     "dexie": "^2.0.4",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
+    "eslint-loader": "^2.0.0",
     "extract-text-webpack-plugin": "3.0.2",
     "faker": "^4.1.0",
     "file-loader": "1.1.5",
@@ -58,6 +59,8 @@
     "lint": "eslint ./src"
   },
   "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.13.0",
@@ -70,7 +73,8 @@
       "src/**/*.{js,jsx,mjs}"
     ],
     "setupFiles": [
-      "<rootDir>/config/polyfills.js"
+      "<rootDir>/config/polyfills.js",
+      "<rootDir>/config/jest/setup.js"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
