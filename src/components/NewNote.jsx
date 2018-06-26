@@ -13,7 +13,7 @@ import {
   StyledMarkdown,
   PlacedMenu,
   OpenMenu
-} from './Note';
+} from './styled/NotePage';
 
 class NewNote extends Component {
   state = {
