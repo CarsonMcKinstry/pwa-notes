@@ -38,26 +38,12 @@ class AppBar extends Component {
 
   state = {
     menuOpen: false,
-    hasBackButton: false
   }
 
-  componentWillMount() {
-    if (this.props.location.pathname !== '/') {
-      this.setState({hasBackButton: true})
-    }
+  needsBackButton = () => {
+    const { location } = this.props;
 
-    console.log(this.props);
-  }
-
-  componentWillReceiveProps(next) {
-    if (
-        this.props.location.pathname !== next.location.pathname
-        && next.location.pathname !== '/'
-      ) {
-      this.setState({ hasBackButton: true });
-    } else if (next.location.pathname === '/') {
-      this.setState({ hasBackButton: false });
-    }
+    return location.url !== '/';
   }
 
   render(){
@@ -66,7 +52,7 @@ class AppBar extends Component {
         <TopAppBar>
           <TopAppBarRow>
             <TopAppBarSection alignStart>
-              { this.state.hasBackButton 
+              { this.needsBackButton() 
                 ? <TopAppBarNavigationIcon 
                     onClick={() => this.props.history.go(-1)}
                     use={navigator.userAgent.includes('Mac OS X') ? 'arrow_back_ios' : 'arrow_back'}

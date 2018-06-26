@@ -10,7 +10,8 @@ import { Fab } from 'rmwc/Fab';
 import { Menu, MenuAnchor, MenuItem } from 'rmwc/Menu';
 import { ListDivider, ListItemText, ListItemGraphic } from 'rmwc';
 import Markdown from 'react-markdown';
-function debounce(fn, w, imm) {
+
+export function debounce(fn, w, imm) {
   let timeout;
   return function() {
     let context = this;
@@ -37,7 +38,7 @@ const savingAnimation = keyframes`
   }
 `;
 
-const SavingIcon = styled(({isSaving, ...props}) => <Icon {...props}/>)`
+export const SavingIcon = styled(({isSaving, ...props}) => <Icon {...props}/>)`
   animation-direction: forwards;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
@@ -47,7 +48,7 @@ const SavingIcon = styled(({isSaving, ...props}) => <Icon {...props}/>)`
   margin-left: 6px;
 `;
 
-const NotePage = styled(Swipeable)`
+export const NotePage = styled(Swipeable)`
   position: relative;
   height: calc(100% - 56px);
   @media screen and (min-width: ${breakpoint}) {
@@ -55,7 +56,7 @@ const NotePage = styled(Swipeable)`
   }
 `;
 
-const NoteTopBar = styled.div`
+export const NoteTopBar = styled.div`
   position: relative;
   height: 36px;
   padding: 0 12px;
@@ -65,7 +66,7 @@ const NoteTopBar = styled.div`
 
 `
 
-const NoteArea = styled(props => <DebouncedInput {...props} element="textarea"/>)`
+export const NoteArea = styled(props => <DebouncedInput {...props} element="textarea"/>)`
   resize: none;
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
@@ -81,16 +82,16 @@ const NoteArea = styled(props => <DebouncedInput {...props} element="textarea"/>
   }
 `;
 
-const NoteDate = styled.p`
+export const NoteDate = styled.p`
   color: rgba(0,0,0,0.54);
   font-size: 90%;
 `
 
-const NoteStatusIcons = styled.div`
+export const NoteStatusIcons = styled.div`
   color: rgba(0,0,0,0.54);
 `
 
-const OpenMenu = styled(Fab)`
+export const OpenMenu = styled(Fab)`
   background-color: ${ props => props.theme.secondary.base }!important;
   color: #fff!important;
   position: fixed!important;
@@ -98,14 +99,14 @@ const OpenMenu = styled(Fab)`
   right: 12px;
 `
 
-const PlacedMenu = styled(MenuAnchor)`
+export const PlacedMenu = styled(MenuAnchor)`
   background: transparent;
   position: fixed!important;
   bottom: 56px;
   right: 12px;
 `
 
-const StyledMarkdown = styled(Markdown)`
+export const StyledMarkdown = styled(Markdown)`
   padding: 6px 12px 48px;
   font-size: 1em;
   line-height: 1.5;
@@ -179,7 +180,6 @@ class Note extends Component {
                 onChange={this.handleNoteChange}
               />
             : <StyledMarkdown source={this.state.note}/>
-
         }
         <PlacedMenu element="span">
           <Menu

@@ -7,7 +7,7 @@ import TrashList from './components/TrashList';
 import moment from 'moment';
 import { Switch, Route } from 'react-router-dom'; 
 import Note from './components/Note';
-
+import NewNote from './components/NewNote';
 const notes = Array
   .apply(null, Array(100))
   .map((_, i) => {
@@ -38,6 +38,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" render={(props) => <NotesList {...props} notes={notes} setTitle={this.setTitle}/>}/>
           <Route exact path="/notes/:id" render={(props) => <Note {...props} setTitle={this.setTitle}/>}/>
+          <Route exact path="/new" render={(props) => <NewNote {...props} notes={notes} setTitle={this.setTitle}/>}/>
           <Route exact path="/trash" render={(props) => <TrashList {...props} notes={notes} setTitle={this.setTitle}/>}/>
         </Switch>
       </Fragment>
