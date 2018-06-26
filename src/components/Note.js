@@ -126,12 +126,6 @@ class Note extends Component {
     this.props.setTitle('Note')
   }
 
-  componentWillUnmount() {
-    this.setState({
-      tm: null
-    })
-  }
-
   handleSwipeRight = (e, d, f) => {
     if (f) {
       this.props.history.go(-1);
