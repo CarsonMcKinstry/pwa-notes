@@ -1,12 +1,11 @@
-import React, {Component, Fragment} from 'react';
-import {PropTypes} from 'prop-types';
+/* global navigator */
+import React, { Component, Fragment } from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-
 import {
-  TopAppBar, 
-  TopAppBarRow, 
+  TopAppBar,
+  TopAppBarRow,
   TopAppBarFixedAdjust,
   TopAppBarActionItem,
   TopAppBarNavigationIcon,
@@ -17,25 +16,23 @@ import {
 import {
   MenuAnchor, Menu, MenuItem
 } from 'rmwc/Menu';
-import { Icon } from 'rmwc/Icon';
-import { ListItem, ListItemText, ListItemGraphic, ListDivider } from 'rmwc/List';
+import { ListItemText, ListItemGraphic, ListDivider } from 'rmwc/List';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: initial;
-`
+`;
 
 const TopAppBarTitleSection = styled(TopAppBarSection)`
 
-`
+`;
 
 const BackPlaceholder = styled.div`
   height: 36px;
   width: 36px;
-`
+`;
 
 class AppBar extends Component {
-
   state = {
     menuOpen: false,
   }
@@ -46,61 +43,72 @@ class AppBar extends Component {
     return location.url !== '/';
   }
 
-  render(){
-    return(
+  render() {
+    const {
+      history,
+    } = this.props;
+    const {
+      menuOpen,
+      title
+    } = this.state;
+    return (
       <Fragment>
         <TopAppBar>
           <TopAppBarRow>
             <TopAppBarSection alignStart>
-              { this.needsBackButton() 
-                ? <TopAppBarNavigationIcon 
-                    onClick={() => this.props.history.go(-1)}
+              { this.needsBackButton()
+                ? (
+                  <TopAppBarNavigationIcon
+                    onClick={() => history.go(-1)}
                     use={navigator.userAgent.includes('Mac OS X') ? 'arrow_back_ios' : 'arrow_back'}
                   />
-                : <BackPlaceholder/>
+                )
+                : <BackPlaceholder />
               }
             </TopAppBarSection>
             <TopAppBarTitleSection>
               <TopAppBarTitle>
-                { this.props.title }
+                {title}
               </TopAppBarTitle>
             </TopAppBarTitleSection>
             <TopAppBarSection alignEnd>
               <MenuAnchor>
                 <Menu
-                  open={this.state.menuOpen}
-                  onClose={_ => this.setState({menuOpen: false})}
+                  open={menuOpen}
+                  onClose={_ => this.setState({ menuOpen: false })} //eslint-disable-line
                 >
                   <StyledLink to="/">
-                    <MenuItem onClick={() => this.setState({menuOpen: false})}>
-                      <ListItemGraphic use="insert_drive_file"/>
-                      <ListItemText>Notes</ListItemText>
+                    <MenuItem onClick={() => this.setState({ menuOpen: false })}>
+                      <ListItemGraphic use="insert_drive_file" />
+                      <ListItemText>
+                        Notes
+                      </ListItemText>
                     </MenuItem>
                   </StyledLink>
-                  <ListDivider/>
+                  <ListDivider />
                   <StyledLink to="/trash">
-                    <MenuItem onClick={() => this.setState({menuOpen: false})}>
-                      <ListItemGraphic use="delete"/>
-                      <ListItemText>Trash</ListItemText>
+                    <MenuItem onClick={() => this.setState({ menuOpen: false })}>
+                      <ListItemGraphic use="delete" />
+                      <ListItemText>
+                        Trash
+                      </ListItemText>
                     </MenuItem>
                   </StyledLink>
                 </Menu>
 
                 <TopAppBarActionItem
-                  onClick={_ => this.setState({menuOpen: true})}
+                  onClick={_ => this.setState({ menuOpen: true })} //eslint-disable-line
                 >
-                  { navigator.userAgent.includes('Mac OS X') ? 'more_horiz' : 'more_vert' } 
+                  { navigator.userAgent.includes('Mac OS X') ? 'more_horiz' : 'more_vert' }
                 </TopAppBarActionItem>
               </MenuAnchor>
             </TopAppBarSection>
           </TopAppBarRow>
         </TopAppBar>
-        <TopAppBarFixedAdjust/>
+        <TopAppBarFixedAdjust />
       </Fragment>
     );
   }
 }
-
-AppBar.propTypes = {}
 
 export default withRouter(AppBar);
