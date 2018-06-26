@@ -38,10 +38,6 @@ const StyledListItem = styled(({ swiped, ...props }) => <ListItem {...props} />)
 `;
 
 class NotesListItem extends Component {
-  defaultProps = {
-
-  }
-
   handleDeletePress = (e) => {
     const { note, onDelete } = this.props;
     e.stopPropagation();

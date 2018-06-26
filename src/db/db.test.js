@@ -7,7 +7,7 @@ import every from 'lodash/fp/every';
 
 import { stores } from './index';
 import { getAllNotes, getNote, getTrash } from './read';
-import { createNote } from './create';
+import { createNote, createFolder } from './create';
 
 Dexie.dependencies.indexedDB = indexedDB;
 Dexie.dependencies.IDBKeyRange = IDBKeyRange;
@@ -41,7 +41,6 @@ describe('pwa-notes db', () => {
   });
 
   describe('notes table', () => {
-
     it('should exist', () => {
       expect(db.notes).not.toBeUndefined();
     });
@@ -86,6 +85,18 @@ describe('pwa-notes db', () => {
         expect(count).toEqual(11);
         const last = await db.notes.toCollection().last();
         expect(last.id).toEqual(11);
+      });
+    });
+
+    describe('createFolder', () => {
+      it('should create a new folder', async () => {
+        expect.assertions(3);
+        const created = await createFolder(db, 'Hello World');
+        expect(created).not.toBeUndefined();
+        const count = await db.folders.count();
+        expect(count).toEqual(1);
+        const last = await db.folders.toCollection().last();
+        expect(last.id).toEqual(1);
       });
     });
   });

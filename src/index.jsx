@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import Theme from './components/Theme';
+import Theme from './components/styled/Theme';
 
 
 import history from './history';

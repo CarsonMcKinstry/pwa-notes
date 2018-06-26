@@ -61,12 +61,14 @@
   "devDependencies": {
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.10.0",
     "fake-indexeddb": "^2.0.4",
+    "jest-styled-components": "^5.0.1",
     "sinon": "^6.0.1"
   },
   "jest": {
@@ -77,6 +79,7 @@
       "<rootDir>/config/polyfills.js",
       "<rootDir>/config/jest/setup.js"
     ],
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
