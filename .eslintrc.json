@@ -2,6 +2,9 @@
     "extends": "airbnb",
     "parser": "babel-eslint",
     "rules": {
-        "comma-dangle":"off"
+        "comma-dangle":"off",
+        "no-confusing-arrow": "off",
+        "react/prop-types": "off",
+        "no-unused-expressions": ["error", {"allowTernary": true, "allowTemplateTags": true}]
     }
 }

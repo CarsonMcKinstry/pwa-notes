@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
-import {PropTypes} from 'prop-types';
+import React from 'react';
 import { ThemeProvider, injectGlobal } from 'styled-components';
 
-const theme = {
+const baseTheme = {
   primary: {
     base: '#0d47a1',
     light: '#5472d3',
@@ -18,7 +17,7 @@ const theme = {
     light: '#ff7961',
     dark: '#ba000d'
   }
-}
+};
 
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Roboto|Material+Icons');
@@ -35,22 +34,22 @@ injectGlobal`
   }
   
   :root {
-    --mdc-theme-primary: ${theme.primary.base}!important;
-    --mdc-theme-secondary: ${theme.secondary.base}!important;
+    --mdc-theme-primary: ${baseTheme.primary.base}!important;
+    --mdc-theme-secondary: ${baseTheme.secondary.base}!important;
   }
 
-`
+`;
 
 
-const Theme = ({children, ...props}) => (
-  <ThemeProvider theme={{
-    ...props.theme,
-    ...theme
-  }}>
+const Theme = ({ children, theme }) => (
+  <ThemeProvider
+    theme={{
+      ...theme,
+      ...baseTheme
+    }}
+  >
     {children}
   </ThemeProvider>
-)
-
-Theme.propTypes = {}
+);
 
 export default Theme;
