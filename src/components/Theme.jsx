@@ -2,7 +2,7 @@
 import React from 'react';
 import { ThemeProvider, injectGlobal } from 'styled-components';
 
-const baseTheme = {
+export const baseTheme = {
   primary: {
     base: '#0d47a1',
     light: '#5472d3',
