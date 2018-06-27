@@ -6,6 +6,12 @@ exports[`<NoteArea /> should render without crashing 1`] = `
 />
 `;
 
+exports[`<NoteDate /> should render without crashing 1`] = `
+<p
+  className="sc-ifAKCX dWvTOu"
+/>
+`;
+
 exports[`<NotePage /> should render children 1`] = `
 <Swipeable
   className="sc-bwzfXH jciCha"
@@ -45,13 +51,130 @@ exports[`<NoteStatusIcons /> should render without crashing 1`] = `
 exports[`<NoteStatusIcons /> should render without crashing 2`] = `
 <div
   className="sc-EHOje fxOPMV"
->
-  menu
-</div>
+/>
 `;
 
 exports[`<NoteTopBar /> should render without crashing 1`] = `
 <div
   className="sc-htpNat devkFR"
+/>
+`;
+
+exports[`<OpenMenu /> should render without crashing 1`] = `
+<Fab
+  className="sc-bZQynM iSECoX"
+  theme={
+    Object {
+      "danger": Object {
+        "base": "#f44336",
+        "dark": "#ba000d",
+        "light": "#ff7961",
+      },
+      "primary": Object {
+        "base": "#0d47a1",
+        "dark": "#002171",
+        "light": "#5472d3",
+      },
+      "secondary": Object {
+        "base": "#81c784",
+        "dark": "#519657",
+        "light": "#b2fab4",
+      },
+    }
+  }
+/>
+`;
+
+exports[`<PlacedMenu /> should render without crashing 1`] = `
+<MenuAnchor
+  className="sc-gzVnrw gnhKiB"
+  tag="div"
+/>
+`;
+
+exports[`<SavingIcon /> should render with isSaving equal to true 1`] = `
+<Component
+  className="sc-bdVaJa kfKVmr"
+  isSaving={true}
+/>
+`;
+
+exports[`<SavingIcon /> should render without crashing 1`] = `
+<Component
+  className="sc-bdVaJa geeMad"
+/>
+`;
+
+exports[`<StyledMarkdown /> should render markdown 1`] = `
+<Styled(ReactMarkdown)
+  source="# Hello World
+
+## Hello Other World
+
+this should be a paragraph with a link: [this should be a link](https://google.com)"
+>
+  <ReactMarkdown
+    astPlugins={Array []}
+    className="sc-htoDjs iWndyc"
+    escapeHtml={true}
+    plugins={Array []}
+    rawSourcePos={false}
+    renderers={Object {}}
+    skipHtml={false}
+    source="# Hello World
+  
+  ## Hello Other World
+  
+  this should be a paragraph with a link: [this should be a link](https://google.com)"
+    sourcePos={false}
+    transformLinkUri={[Function]}
+  >
+    <div
+      className="sc-htoDjs iWndyc"
+      key="root-1-1"
+    >
+      <Heading
+        key="heading-1-1"
+        level={1}
+      >
+        <h1>
+          Hello World
+        </h1>
+      </Heading>
+      <Heading
+        key="heading-3-1"
+        level={2}
+      >
+        <h2>
+          Hello Other World
+        </h2>
+      </Heading>
+      <p
+        key="paragraph-5-1"
+      >
+        this should be a paragraph with a link: 
+        <a
+          href="https://google.com"
+          key="link-5-41"
+        >
+          this should be a link
+        </a>
+      </p>
+    </div>
+  </ReactMarkdown>
+</Styled(ReactMarkdown)>
+`;
+
+exports[`<StyledMarkdown /> should render without crashing 1`] = `
+<ReactMarkdown
+  astPlugins={Array []}
+  className="sc-htoDjs iWndyc"
+  escapeHtml={true}
+  plugins={Array []}
+  rawSourcePos={false}
+  renderers={Object {}}
+  skipHtml={false}
+  sourcePos={false}
+  transformLinkUri={[Function]}
 />
 `;

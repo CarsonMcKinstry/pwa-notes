@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Theme/> should extend the baseTheme 1`] = `
+<Theme
+  theme={
+    Object {
+      "black": "#000",
+      "white": "#fff",
+    }
+  }
+>
+  <ThemeProvider
+    theme={
+      Object {
+        "black": "#000",
+        "danger": Object {
+          "base": "#f44336",
+          "dark": "#ba000d",
+          "light": "#ff7961",
+        },
+        "primary": Object {
+          "base": "#0d47a1",
+          "dark": "#002171",
+          "light": "#5472d3",
+        },
+        "secondary": Object {
+          "base": "#81c784",
+          "dark": "#519657",
+          "light": "#b2fab4",
+        },
+        "white": "#fff",
+      }
+    }
+  />
+</Theme>
+`;
+
+exports[`<Theme/> should have a ThemeProvder with a theme of the baseTheme 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "danger": Object {
+          "base": "#f44336",
+          "dark": "#ba000d",
+          "light": "#ff7961",
+        },
+        "primary": Object {
+          "base": "#0d47a1",
+          "dark": "#002171",
+          "light": "#5472d3",
+        },
+        "secondary": Object {
+          "base": "#81c784",
+          "dark": "#519657",
+          "light": "#b2fab4",
+        },
+      }
+    }
+  />
+</Theme>
+`;
+
+exports[`<Theme/> should render children 1`] = `
+<ThemeProvider
+  theme={
+    Object {
+      "danger": Object {
+        "base": "#f44336",
+        "dark": "#ba000d",
+        "light": "#ff7961",
+      },
+      "primary": Object {
+        "base": "#0d47a1",
+        "dark": "#002171",
+        "light": "#5472d3",
+      },
+      "secondary": Object {
+        "base": "#81c784",
+        "dark": "#519657",
+        "light": "#b2fab4",
+      },
+    }
+  }
+>
+  <div />
+</ThemeProvider>
+`;
+
+exports[`<Theme/> should render without crashing 1`] = `
+<ThemeProvider
+  theme={
+    Object {
+      "danger": Object {
+        "base": "#f44336",
+        "dark": "#ba000d",
+        "light": "#ff7961",
+      },
+      "primary": Object {
+        "base": "#0d47a1",
+        "dark": "#002171",
+        "light": "#5472d3",
+      },
+      "secondary": Object {
+        "base": "#81c784",
+        "dark": "#519657",
+        "light": "#b2fab4",
+      },
+    }
+  }
+/>
+`;
