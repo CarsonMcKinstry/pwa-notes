@@ -14,9 +14,6 @@ export const deleteNote = curry(async (db, id) => {
   return db.notes.delete(note.id);
 });
 
-export const trashNote = curry((db, note) => db
+export const trashNote = curry((db, { id }) => db
   .notes
-  .put({
-    ...note,
-    markedForDeletion: true
-  }));
+  .update(id, { markedForDeletion: true }));

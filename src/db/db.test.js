@@ -9,6 +9,7 @@ import { stores } from './index';
 import { getAllNotes, getNote, getTrash } from './read';
 import { createNote, createFolder } from './create';
 import { trashNote, deleteNote, collectTrash } from './delete';
+import { updateNote } from './update';
 
 Dexie.dependencies.indexedDB = indexedDB;
 Dexie.dependencies.IDBKeyRange = IDBKeyRange;
@@ -98,6 +99,19 @@ describe('pwa-notes db', () => {
         expect(count).toEqual(1);
         const last = await db.folders.toCollection().last();
         expect(last.id).toEqual(1);
+      });
+    });
+
+    describe('updateNote', () => {
+      it('should update a note', async () => {
+        expect.assertions(3);
+
+        const note = await getNote(db, 2);
+        expect(note).toBeDefined();
+        const updated = await updateNote(db, 2, 'Hello World');
+        expect(updated).toBeTruthy();
+        const updatedNote = await getNote(db, 2);
+        expect(updatedNote.body).toBe('Hello World');
       });
     });
 
