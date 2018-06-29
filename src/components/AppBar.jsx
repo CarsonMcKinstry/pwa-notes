@@ -46,10 +46,10 @@ class AppBar extends Component {
   render() {
     const {
       history,
+      title
     } = this.props;
     const {
-      menuOpen,
-      title
+      menuOpen
     } = this.state;
     return (
       <Fragment>

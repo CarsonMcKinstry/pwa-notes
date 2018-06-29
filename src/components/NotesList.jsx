@@ -37,10 +37,6 @@ class NotesList extends Component {
     history.push(`/notes/${id}`);
   }
 
-  // handleDeletePress = (id) => {
-  //   console.log(id);
-  // }
-
   renderList = () => {
     const { notes } = this.props;
     const { swipedItem } = this.state;
@@ -57,7 +53,6 @@ class NotesList extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <Fragment>
         <List>
