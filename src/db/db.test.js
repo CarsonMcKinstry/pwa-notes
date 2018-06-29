@@ -8,6 +8,7 @@ import every from 'lodash/fp/every';
 import { stores } from './index';
 import { getAllNotes, getNote, getTrash } from './read';
 import { createNote, createFolder } from './create';
+import { trashNote, deleteNote, collectTrash } from './delete';
 
 Dexie.dependencies.indexedDB = indexedDB;
 Dexie.dependencies.IDBKeyRange = IDBKeyRange;
@@ -42,7 +43,7 @@ describe('pwa-notes db', () => {
 
   describe('notes table', () => {
     it('should exist', () => {
-      expect(db.notes).not.toBeUndefined();
+      expect(db.notes).toBeDefined();
     });
 
     it('should have 10 records', () => {
@@ -80,7 +81,7 @@ describe('pwa-notes db', () => {
       it('should create a new note', async () => {
         expect.assertions(3);
         const created = await createNote(db, faker.lorem.paragraph());
-        expect(created).not.toBeUndefined();
+        expect(created).toBeDefined();
         const count = await db.notes.count();
         expect(count).toEqual(11);
         const last = await db.notes.toCollection().last();
@@ -92,11 +93,50 @@ describe('pwa-notes db', () => {
       it('should create a new folder', async () => {
         expect.assertions(3);
         const created = await createFolder(db, 'Hello World');
-        expect(created).not.toBeUndefined();
+        expect(created).toBeDefined();
         const count = await db.folders.count();
         expect(count).toEqual(1);
         const last = await db.folders.toCollection().last();
         expect(last.id).toEqual(1);
+      });
+    });
+
+    describe('trashNote', () => {
+      it('should trash a note', async () => {
+        expect.assertions(3);
+        const note = await getNote(db, 1);
+        expect(note).toBeDefined();
+        const updatedId = await trashNote(db, note);
+        expect(updatedId).toEqual(1);
+        const updatedNote = await getNote(db, 1);
+        expect(updatedNote.markedForDeletion).toBe(true);
+      });
+    });
+
+    describe('deleteNote', () => {
+      it('should delete a note', async () => {
+        expect.assertions(2);
+
+        const deletedResponse = await deleteNote(db, 1);
+        expect(deletedResponse).toBeUndefined();
+        const note = await getNote(db, 1);
+        expect(note).toBeUndefined();
+      });
+
+      it('should throw an error if markedForDeletion is false', async () => {
+        expect.assertions(1);
+        await expect(deleteNote(db, 2)).rejects.toEqual(Error('Notes must be marked for permanent deletion'));
+      });
+    });
+
+    describe('collectTrash', () => {
+      it('should delete notes marked for deletion', async () => {
+        expect.assertions(2);
+        await collectTrash(db, null);
+
+        const notes = await db.notes.toArray();
+        expect(every(note => note.id <= 5 || note.id > 10, notes)).toBe(true);
+        expect(notes.length).toEqual(5);
       });
     });
   });

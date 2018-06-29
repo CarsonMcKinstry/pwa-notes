@@ -1,145 +1,121 @@
-// /* global it, describe, expect, shallow, mount */
-// import React from 'react';
-// import {
-//   NotePage,
-//   NoteArea,
-//   NoteTopBar,
-//   NoteStatusIcons,
-//   NoteDate,
-//   OpenMenu,
-//   PlacedMenu,
-//   StyledMarkdown,
-//   SavingIcon
-// } from '../NotePage';
-// import { baseTheme } from '../Theme';
+/* global it, describe, expect, shallow, mount */
+import React from 'react';
+import {
+  NotePage,
+  NoteArea,
+  NoteTopBar,
+  NoteStatusIcons,
+  NoteDate,
+  OpenMenu,
+  PlacedMenu,
+  StyledMarkdown,
+  SavingIcon
+} from '../NotePage';
+import { baseTheme } from '../Theme';
 
-// describe('<NotePage />', () => {
-//   it('should render without crashing', () => {
-//     const tree = shallow(<NotePage />);
+describe('<NotePage />', () => {
+  it('should render without crashing', () => {
+    shallow(<NotePage />).html();
+  });
 
-//     expect(tree).toMatchSnapshot();
-//   });
+  it('should render children', () => {
+    const child = shallow(
+      <NotePage>
+        <div />
+      </NotePage>
+    );
 
-//   it('should render children', () => {
-//     const tree = shallow(
-//       <NotePage>
-//         <div />
-//       </NotePage>
-//     );
+    expect(child.length).toEqual(1);
+  });
+});
 
-//     expect(tree.find('div').length).toEqual(1);
-//     expect(tree).toMatchSnapshot();
-//   });
-// });
+describe('<NoteArea />', () => {
+  it('should render without crashing', () => {
+    shallow(<NoteArea />).html();
+  });
+});
 
-// describe('<NoteArea />', () => {
-//   it('should render without crashing', () => {
-//     const tree = shallow(<NoteArea />);
+describe('<NoteTopBar />', () => {
+  it('should render without crashing', () => {
+    shallow(<NoteTopBar />).html();
+  });
+});
 
-//     expect(tree).toMatchSnapshot();
-//   });
-// });
+describe('<NoteStatusIcons />', () => {
+  it('should render without crashing', () => {
+    shallow(
+      <NoteStatusIcons>
+        menu
+      </NoteStatusIcons>
+    ).html();
+  });
+});
 
-// describe('<NoteTopBar />', () => {
-//   it('should render without crashing', () => {
-//     const tree = shallow(<NoteTopBar />);
+describe('<NoteStatusIcons />', () => {
+  it('should render without crashing', () => {
+    shallow(<NoteStatusIcons />).html();
+  });
+});
 
-//     expect(tree).toMatchSnapshot();
-//   });
-// });
+describe('<SavingIcon />', () => {
+  it('should render without crashing', () => {
+    shallow(<SavingIcon />).html();
+  });
 
-// describe('<NoteStatusIcons />', () => {
-//   it('should render without crashing', () => {
-//     const tree = shallow(
-//       <NoteStatusIcons>
-//         menu
-//       </NoteStatusIcons>
-//     );
+  it('should render an i with the material-icons class', () => {
+    const icon = mount(
+      <SavingIcon>
+        chaches
+      </SavingIcon>
+    ).find('i.material-icons');
 
-//     expect(tree).toMatchSnapshot();
-//   });
-// });
+    expect(icon.length).toEqual(1);
+  });
 
-// describe('<NoteStatusIcons />', () => {
-//   it('should render without crashing', () => {
-//     const tree = shallow(<NoteStatusIcons />);
+  it('should render with isSaving equal to true', () => {
+    shallow(<SavingIcon isSaving />).html();
+  });
+});
 
-//     expect(tree).toMatchSnapshot();
-//   });
-// });
+describe('<NoteDate />', () => {
+  it('should render without crashing', () => {
+    shallow(<NoteDate />);
+  });
+});
 
-// describe('<SavingIcon />', () => {
-//   it('should render without crashing', () => {
-//     const tree = shallow(<SavingIcon />);
-//     expect(tree).toMatchSnapshot();
-//   });
+describe('<OpenMenu />', () => {
+  it('should render without crashing', () => {
+    shallow(<OpenMenu theme={baseTheme} />);
+  });
+});
 
-//   it('should render an i with the material-icons class', () => {
-//     const tree = mount(
-//       <SavingIcon>
-//         chaches
-//       </SavingIcon>
-//     );
+describe('<PlacedMenu />', () => {
+  it('should render without crashing', () => {
+    shallow(<PlacedMenu />).html();
+  });
+});
 
-//     expect(tree.find('i.material-icons').length).toEqual(1);
-//   });
+describe('<StyledMarkdown />', () => {
+  it('should render without crashing', () => {
+    shallow(<StyledMarkdown />).html();
+  });
 
-//   it('should render with isSaving equal to true', () => {
-//     const tree = shallow(<SavingIcon isSaving />);
+  it('should render markdown', () => {
+    const md = '# Hello World\n\n## Hello Other World\n\nthis should be a paragraph with a link: [this should be a link](https://google.com)';
 
-//     expect(tree).toMatchSnapshot();
-//   });
-// });
+    const tree = mount(<StyledMarkdown source={md} />);
 
-// describe('<NoteDate />', () => {
-//   it('should render without crashing', () => {
-//     const tree = shallow(<NoteDate />);
+    expect(tree.find('h1').length).toEqual(1);
+    expect(tree.find('h1').text()).toBe('Hello World');
 
-//     expect(tree).toMatchSnapshot();
-//   });
-// });
+    expect(tree.find('h2').length).toEqual(1);
+    expect(tree.find('h2').text()).toBe('Hello Other World');
 
-// describe('<OpenMenu />', () => {
-//   it('should render without crashing', () => {
-//     const tree = shallow(<OpenMenu theme={baseTheme} />);
+    expect(tree.find('p').length).toEqual(1);
+    expect(tree.find('p').text()).toBe('this should be a paragraph with a link: this should be a link');
 
-//     expect(tree).toMatchSnapshot();
-//   });
-// });
-
-// describe('<PlacedMenu />', () => {
-//   it('should render without crashing', () => {
-//     const tree = shallow(<PlacedMenu />);
-
-//     expect(tree).toMatchSnapshot();
-//   });
-// });
-
-// describe('<StyledMarkdown />', () => {
-//   it('should render without crashing', () => {
-//     const tree = shallow(<StyledMarkdown />);
-
-//     expect(tree).toMatchSnapshot();
-//   });
-
-//   it('should render markdown', () => {
-//     const md = '# Hello World\n\n## Hello Other World\n\nthis should be a paragraph with a link: [this should be a link](https://google.com)';
-
-//     const tree = mount(<StyledMarkdown source={md} />);
-
-//     expect(tree.find('h1').length).toEqual(1);
-//     expect(tree.find('h1').text()).toBe('Hello World');
-
-//     expect(tree.find('h2').length).toEqual(1);
-//     expect(tree.find('h2').text()).toBe('Hello Other World');
-
-//     expect(tree.find('p').length).toEqual(1);
-//     expect(tree.find('p').text()).toBe('this should be a paragraph with a link: this should be a link');
-
-//     expect(tree.find('p > a').length).toEqual(1);
-//     expect(tree.find('p > a').text()).toBe('this should be a link');
-//     expect(tree.find('p > a').props().href).toBe('https://google.com');
-
-//     expect(tree).toMatchSnapshot();
-//   });
-// });
+    expect(tree.find('p > a').length).toEqual(1);
+    expect(tree.find('p > a').text()).toBe('this should be a link');
+    expect(tree.find('p > a').props().href).toBe('https://google.com');
+  });
+});
