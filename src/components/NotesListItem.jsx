@@ -62,7 +62,7 @@ class NotesListItem extends Component {
   render() {
     const { note, swiped } = this.props;
 
-    const [first, secondLine] = note.body.split('.');
+    const [first, secondLine] = note.body.split(/\.|\n\n/g);
 
     return (
       <Swipeable
@@ -73,11 +73,10 @@ class NotesListItem extends Component {
           <StyledListItemText
             swiped={swiped}
           >
-            {first.replace(/^#/g, '')}
+            {first.replace(/^#/g, '').trim() || 'New Note'}
             <ListItemSecondaryText>
               {moment(note.createdAt).format('D/M/YY')}
-              -
-              {secondLine}
+              &nbsp;{secondLine && secondLine.replace(/^#+/g, '').trim()}
             </ListItemSecondaryText>
           </StyledListItemText>
           <DeleteButton

@@ -57,7 +57,7 @@ describe('pwa-notes db', () => {
         expect.assertions(2);
         const notes = await getAllNotes(db, null);
         expect(notes.length).toEqual(5);
-        expect(every(note => note.markedForDeletion, notes)).toBeTruthy();
+        expect(every(note => !note.markedForDeletion, notes)).toBeTruthy();
       });
     });
 

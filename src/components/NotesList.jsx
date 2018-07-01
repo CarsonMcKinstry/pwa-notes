@@ -26,6 +26,10 @@ class NotesList extends Component {
   componentWillMount() {
     const { setTitle } = this.props;
     setTitle('PWA Notes');
+    db.getAllNotes(null)
+      .then(notes => {
+        this.setState({ notes });
+      });
   }
 
   setSwipedItem = (id) => {
