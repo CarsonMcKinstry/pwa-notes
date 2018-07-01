@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Fab } from 'rmwc/Fab';
 import { List } from 'rmwc/List';
 import NotesListItem from './NotesListItem';
+import db from '../db';
 
 const AddNote = styled(Fab)`
   background-color: ${({ theme }) => theme.secondary.base}!important;
@@ -18,6 +19,7 @@ const FabFix = styled.div`
 
 class NotesList extends Component {
   state = {
+    notes: [],
     swipedItem: null
   }
 
@@ -37,9 +39,15 @@ class NotesList extends Component {
     history.push(`/notes/${id}`);
   }
 
+  addNewNote = () => {
+    const { history } = this.props;
+    db.createNote('')
+      .then(id => history.push(`/notes/${id}`));
+  }
+
+
   renderList = () => {
-    const { notes } = this.props;
-    const { swipedItem } = this.state;
+    const { swipedItem, notes } = this.state;
     return notes.map(note => (
       <NotesListItem
         onClick={this.handleNotePress}
@@ -52,6 +60,7 @@ class NotesList extends Component {
     ));
   }
 
+
   render() {
     return (
       <Fragment>
@@ -59,7 +68,9 @@ class NotesList extends Component {
           {this.renderList()}
         </List>
         <FabFix />
-        <AddNote>
+        <AddNote
+          onClick={this.addNewNote}
+        >
           add
         </AddNote>
       </Fragment>

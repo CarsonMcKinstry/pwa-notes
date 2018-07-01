@@ -6,7 +6,7 @@ import AppBar from './components/AppBar';
 import NotesList from './components/NotesList';
 import TrashList from './components/TrashList';
 import Note from './components/Note';
-import NewNote from './components/NewNote';
+// import NewNote from './components/NewNote';
 
 const notes = [...Array(100)]
   .map((_, i) => ({
@@ -33,9 +33,8 @@ class App extends Component {
       <Fragment>
         <AppBar title={title} />
         <Switch>
-          <Route exact path="/" render={props => <NotesList {...props} notes={notes} setTitle={this.setTitle} />} />
+          <Route exact path="/" render={props => <NotesList {...props} setTitle={this.setTitle} />} />
           <Route exact path="/notes/:id" render={props => <Note {...props} setTitle={this.setTitle} />} />
-          <Route exact path="/new" render={props => <NewNote {...props} notes={notes} setTitle={this.setTitle} />} />
           <Route exact path="/trash" render={props => <TrashList {...props} notes={notes} setTitle={this.setTitle} />} />
         </Switch>
       </Fragment>

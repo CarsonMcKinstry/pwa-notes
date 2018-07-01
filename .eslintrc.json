@@ -4,6 +4,7 @@
     "rules": {
         "comma-dangle":"off",
         "no-confusing-arrow": "off",
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "arrow-parens": "off"
     }
 }

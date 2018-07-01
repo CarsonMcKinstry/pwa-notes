@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import faker from 'faker';
 import moment from 'moment';
 import { Icon } from 'rmwc/Icon';
 import { ListDivider, ListItemText, ListItemGraphic } from 'rmwc/List';
 import { Menu, MenuItem } from 'rmwc/Menu';
+import db from '../db';
 
 import {
   NotePage,
@@ -17,17 +17,21 @@ import {
   OpenMenu
 } from './styled/NotePage';
 
+
 class Note extends Component {
   state = {
     isSaving: false,
-    note: faker.lorem.paragraphs(5),
+    note: null,
     menuOpen: false,
     editing: false
   }
 
   componentWillMount() {
-    const { setTitle } = this.props;
+    const { setTitle, match: { params: { id } } } = this.props;
     setTitle('Note');
+
+    db.getNote(id)
+      .then(note => this.setState({ note }));
   }
 
   handleSwipeRight = (e, d, f) => {
@@ -39,16 +43,35 @@ class Note extends Component {
 
   handleNoteChange = (e) => {
     e.persist();
-    this.setState({
-      note: e.target.value,
-      isSaving: true
-    }, () => {
-      setTimeout(() => {
-        this.setState({
-          isSaving: false
-        });
-      }, 3000);
-    });
+    this.setState(
+      prevState => ({
+        note: {
+          ...prevState.note,
+          body: e.target.value,
+        },
+        isSaving: true
+      }),
+      () => {
+        const { note } = this.state;
+        db.updateNote(note.id, note.body)
+          .then(() => {
+            setTimeout(() => {
+              this.setState({
+                isSaving: false
+              });
+            }, 1500);
+          });
+      }
+    );
+  }
+
+  handleNoteClick = e => {
+    console.log(e);
+    if (e.target.nodeName !== 'A') {
+      this.setState({
+        editing: true
+      });
+    }
   }
 
   render() {
@@ -59,13 +82,15 @@ class Note extends Component {
       editing
     } = this.state;
 
+    if (!note) return null;
+
     return (
       <NotePage
         onSwipedRight={this.handleSwipeRight}
       >
         <NoteTopBar>
           <NoteDate>
-            { moment().format('ddd, D MMM. \'YY @ H:mm')}
+            { moment(note.createdAt).format('ddd, D MMM. \'YY @ H:mm')}
           </NoteDate>
           <NoteStatusIcons>
             <Icon
@@ -82,12 +107,23 @@ class Note extends Component {
           editing
             ? (
               <NoteArea
-                value={note}
+                value={note.body}
                 debounceTimeout={1000}
                 onChange={this.handleNoteChange}
               />
             )
-            : <StyledMarkdown source={note} />
+            : (
+              <div
+                onClick={this.handleNoteClick}
+                onKeyDown={this.handleNoteClick}
+                role="textbox"
+                tabIndex={0}
+              >
+                <StyledMarkdown
+                  source={note.body}
+                />
+              </div>
+            )
         }
         <PlacedMenu element="span">
           <Menu

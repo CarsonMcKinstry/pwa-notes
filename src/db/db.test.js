@@ -67,6 +67,11 @@ describe('pwa-notes db', () => {
         return getNote(db, 1)
           .then(note => expect(note.id).toEqual(1));
       });
+      it('should return a note if an id of type string is passed', () => {
+        expect.assertions(1);
+        return getNote(db, '1')
+          .then(note => expect(note.id).toEqual(1));
+      });
     });
 
     describe('getTrash', () => {
