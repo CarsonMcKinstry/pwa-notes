@@ -1,7 +1,8 @@
 import Dexie from 'dexie';
-import { getAllNotes, getNote } from './read';
+import { getAllNotes, getNote, getTrash } from './read';
 import { createNote } from './create';
-import { updateNote } from './update';
+import { updateNote, recoverNote } from './update';
+import { deleteNote, trashNote, collectTrash } from './delete';
 
 const db = new Dexie('pwa-notes');
 
@@ -15,6 +16,11 @@ db.version(1).stores(stores);
 export default {
   getAllNotes: getAllNotes(db),
   getNote: getNote(db),
+  getTrash: getTrash(db),
   createNote: createNote(db),
-  updateNote: updateNote(db)
+  updateNote: updateNote(db),
+  deleteNote: deleteNote(db),
+  trashNote: trashNote(db),
+  collectTrash: collectTrash(db),
+  recoverNote: recoverNote(db)
 };

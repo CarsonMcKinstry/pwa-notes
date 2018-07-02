@@ -9,7 +9,7 @@ import { stores } from './index';
 import { getAllNotes, getNote, getTrash } from './read';
 import { createNote, createFolder } from './create';
 import { trashNote, deleteNote, collectTrash } from './delete';
-import { updateNote } from './update';
+import { updateNote, recoverNote } from './update';
 
 Dexie.dependencies.indexedDB = indexedDB;
 Dexie.dependencies.IDBKeyRange = IDBKeyRange;
@@ -79,7 +79,7 @@ describe('pwa-notes db', () => {
         expect.assertions(2);
         const trash = await getTrash(db, null);
         expect(trash.length).toEqual(5);
-        expect(every(note => !note.markedForDeletion, trash)).toBeTruthy();
+        expect(every(note => note.markedForDeletion, trash)).toBeTruthy();
       });
     });
 
@@ -125,7 +125,7 @@ describe('pwa-notes db', () => {
         expect.assertions(3);
         const note = await getNote(db, 1);
         expect(note).toBeDefined();
-        const updatedId = await trashNote(db, note);
+        const updatedId = await trashNote(db, note.id);
         expect(updatedId).toEqual(1);
         const updatedNote = await getNote(db, 1);
         expect(updatedNote.markedForDeletion).toBe(true);
@@ -156,6 +156,19 @@ describe('pwa-notes db', () => {
         const notes = await db.notes.toArray();
         expect(every(note => note.id <= 5 || note.id > 10, notes)).toBe(true);
         expect(notes.length).toEqual(5);
+      });
+    });
+
+    describe('recoverNote', () => {
+      it('should remove the marked for deltion flag from a note', async () => {
+        expect.assertions(3);
+
+        const trashed = await trashNote(db, { id: 11 });
+        expect(trashed).toBeTruthy();
+        const recovered = await recoverNote(db, 11);
+        expect(recovered).toBeTruthy();
+        const note = await getNote(db, 11);
+        expect(note.markedForDeletion).toBe(false);
       });
     });
   });

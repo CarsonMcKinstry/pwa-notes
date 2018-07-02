@@ -19,5 +19,5 @@ export const getNote = curry((db, id) => {
 
 export const getTrash = curry((db, _) => db // eslint-disable-line
   .notes
-  .filter(note => !note.markedForDeletion)
+  .filter(note => note.markedForDeletion)
   .toArray());

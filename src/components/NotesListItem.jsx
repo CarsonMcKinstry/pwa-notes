@@ -50,7 +50,7 @@ class NotesListItem extends Component {
   }
 
   handleSwipeLeft = () => {
-    const { onSwipe, notes: { id } } = this.props;
+    const { onSwipe, note: { id } } = this.props;
     onSwipe(id);
   }
 

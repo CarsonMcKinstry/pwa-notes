@@ -40,7 +40,7 @@ class AppBar extends Component {
   needsBackButton = () => {
     const { location } = this.props;
 
-    return location.url !== '/';
+    return location.pathname !== '/';
   }
 
   render() {

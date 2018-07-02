@@ -66,12 +66,19 @@ class Note extends Component {
   }
 
   handleNoteClick = e => {
-    console.log(e);
     if (e.target.nodeName !== 'A') {
       this.setState({
         editing: true
       });
     }
+  }
+
+  handleDelete = () => {
+    const { history } = this.props;
+    const { note } = this.state;
+
+    db.trashNote(note.id)
+      .then(history.push('/'));
   }
 
   render() {
@@ -137,7 +144,9 @@ class Note extends Component {
               </ListItemText>
             </MenuItem>
             <ListDivider />
-            <MenuItem>
+            <MenuItem
+              onClick={this.handleDelete}
+            >
               <ListItemGraphic use="delete" />
               <ListItemText>
                 Delete

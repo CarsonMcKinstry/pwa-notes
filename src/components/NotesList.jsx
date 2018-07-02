@@ -20,7 +20,8 @@ const FabFix = styled.div`
 class NotesList extends Component {
   state = {
     notes: [],
-    swipedItem: null
+    swipedItem: null,
+    loading: true
   }
 
   componentWillMount() {
@@ -28,7 +29,7 @@ class NotesList extends Component {
     setTitle('PWA Notes');
     db.getAllNotes(null)
       .then(notes => {
-        this.setState({ notes });
+        this.setState({ notes, loading: false });
       });
   }
 
@@ -49,9 +50,22 @@ class NotesList extends Component {
       .then(id => history.push(`/notes/${id}`));
   }
 
+  handleDeletePress = id => {
+    db.trashNote(id)
+      .then(() => this.setState({ loading: true }))
+      .then(db.getAllNotes)
+      .then(notes => this.setState({ notes }));
+  }
 
   renderList = () => {
     const { swipedItem, notes } = this.state;
+    if (notes.length < 1) {
+      return (
+        <h1>
+          Nope
+        </h1>
+      );
+    }
     return notes.map(note => (
       <NotesListItem
         onClick={this.handleNotePress}
@@ -66,6 +80,14 @@ class NotesList extends Component {
 
 
   render() {
+    const { loading } = this.state;
+    if (loading) {
+      return (
+        <p>
+          loading
+        </p>
+      );
+    }
     return (
       <Fragment>
         <List>

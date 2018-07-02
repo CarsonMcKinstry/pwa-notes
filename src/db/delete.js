@@ -1,6 +1,6 @@
 import curry from 'lodash/fp/curry';
 
-export const collectTrash = curry(async (db, _) => {
+export const collectTrash = curry(async (db, _) => { // eslint-disable-line
   const notes = await db.notes.filter(note => note.markedForDeletion).toArray();
   const ids = notes.map(note => note.id);
 
@@ -14,6 +14,6 @@ export const deleteNote = curry(async (db, id) => {
   return db.notes.delete(note.id);
 });
 
-export const trashNote = curry((db, { id }) => db
+export const trashNote = curry((db, id) => db
   .notes
   .update(id, { markedForDeletion: true }));
