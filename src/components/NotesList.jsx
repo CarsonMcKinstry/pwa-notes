@@ -47,12 +47,11 @@ class NotesList extends Component {
   addNewNote = () => {
     const { history } = this.props;
     db.createNote('')
-      .then(id => history.push(`/notes/${id}`));
+      .then(id => history.push(`/notes/${id}?isNew=1`));
   }
 
   handleDeletePress = id => {
     db.trashNote(id)
-      .then(() => this.setState({ loading: true }))
       .then(db.getAllNotes)
       .then(notes => this.setState({ notes }));
   }

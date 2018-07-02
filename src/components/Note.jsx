@@ -3,6 +3,7 @@ import moment from 'moment';
 import { Icon } from 'rmwc/Icon';
 import { ListDivider, ListItemText, ListItemGraphic } from 'rmwc/List';
 import { Menu, MenuItem } from 'rmwc/Menu';
+import qs from 'query-string';
 import db from '../db';
 
 import {
@@ -27,11 +28,11 @@ class Note extends Component {
   }
 
   componentWillMount() {
-    const { setTitle, match: { params: { id } } } = this.props;
+    const { setTitle, match: { params: { id } }, location } = this.props;
+    const { isNew } = qs.parse(location.search);
     setTitle('Note');
-
     db.getNote(id)
-      .then(note => this.setState({ note }));
+      .then(note => this.setState({ note, editing: isNew === '1' }));
   }
 
   handleSwipeRight = (e, d, f) => {
