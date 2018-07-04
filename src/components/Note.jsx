@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Icon } from 'rmwc/Icon';
 import { ListDivider, ListItemText, ListItemGraphic } from 'rmwc/List';
 import { Menu, MenuItem } from 'rmwc/Menu';
-import qs from 'query-string';
+import qs from 'qs';
 import db from '../db';
 
 import {
