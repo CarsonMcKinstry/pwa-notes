@@ -3,12 +3,14 @@ import styled from 'styled-components';
 
 const TransitionWrapper = styled.div`
   position: absolute;
-  padding-top: 60px;
+  margin-top: 60px;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  z-index: 1;
+  
   &.slide-forward-enter {
     transform: translateX(100%);
     opacity: 0;

@@ -19,6 +19,10 @@ import {
 import { ListItemText, ListItemGraphic, ListDivider } from 'rmwc/List';
 import db from '../db';
 
+const ZIndexTopAppBar = styled(TopAppBar)`
+  z-index: 1000;
+`;
+
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: initial;
@@ -35,7 +39,7 @@ const BackPlaceholder = styled.div`
 
 class AppBar extends Component {
   state = {
-    menuOpen: false,
+    menuOpen: false
   }
 
   addNewNote = () => {
@@ -60,7 +64,7 @@ class AppBar extends Component {
     } = this.state;
     return (
       <Fragment>
-        <TopAppBar>
+        <ZIndexTopAppBar>
           <TopAppBarRow>
             <TopAppBarSection alignStart>
               { this.needsBackButton()
@@ -118,7 +122,7 @@ class AppBar extends Component {
               </MenuAnchor>
             </TopAppBarSection>
           </TopAppBarRow>
-        </TopAppBar>
+        </ZIndexTopAppBar>
         <TopAppBarFixedAdjust />
       </Fragment>
     );
