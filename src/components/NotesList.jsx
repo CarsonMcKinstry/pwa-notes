@@ -21,6 +21,7 @@ class NotesList extends Component {
   state = {
     notes: [],
     swipedItem: null,
+    deletedItem: null,
     loading: true
   }
 
@@ -51,13 +52,19 @@ class NotesList extends Component {
   }
 
   handleDeletePress = id => {
-    db.trashNote(id)
-      .then(db.getAllNotes)
-      .then(notes => this.setState({ notes }));
+    this.setState({
+      deletedItem: id
+    }, () => {
+      setTimeout(() => {
+        db.trashNote(id)
+          .then(db.getAllNotes)
+          .then(notes => this.setState({ notes, deletedItem: null }));
+      }, 400);
+    });
   }
 
   renderList = () => {
-    const { swipedItem, notes } = this.state;
+    const { swipedItem, deletedItem, notes } = this.state;
     if (notes.length < 1) {
       return (
         <h1>
@@ -67,6 +74,7 @@ class NotesList extends Component {
     }
     return notes.map(note => (
       <NotesListItem
+        deleting={note.id === deletedItem}
         onClick={this.handleNotePress}
         onDelete={this.handleDeletePress}
         onSwipe={this.setSwipedItem}

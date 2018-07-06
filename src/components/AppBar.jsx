@@ -17,6 +17,7 @@ import {
   MenuAnchor, Menu, MenuItem
 } from 'rmwc/Menu';
 import { ListItemText, ListItemGraphic, ListDivider } from 'rmwc/List';
+import db from '../db';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -35,6 +36,12 @@ const BackPlaceholder = styled.div`
 class AppBar extends Component {
   state = {
     menuOpen: false,
+  }
+
+  addNewNote = () => {
+    const { history } = this.props;
+    db.createNote('')
+      .then(id => history.push(`/notes/${id}?isNew=1`));
   }
 
   needsBackButton = () => {
@@ -77,6 +84,13 @@ class AppBar extends Component {
                   open={menuOpen}
                   onClose={_ => this.setState({ menuOpen: false })} //eslint-disable-line
                 >
+                  <MenuItem onClick={this.addNewNote}>
+                    <ListItemGraphic use="note_add" />
+                    <ListItemText>
+                      New Note
+                    </ListItemText>
+                  </MenuItem>
+                  <ListDivider />
                   <StyledLink to="/">
                     <MenuItem onClick={() => this.setState({ menuOpen: false })}>
                       <ListItemGraphic use="insert_drive_file" />

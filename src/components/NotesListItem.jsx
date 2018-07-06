@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Swipeable from 'react-swipeable';
 import moment from 'moment';
 
@@ -33,8 +33,22 @@ const StyledListItemText = styled(({ swiped, ...props }) => <ListItemText {...pr
   transform: translateX(${({ swiped }) => swiped ? '-60px' : 0});
 `;
 
-const StyledListItem = styled(({ swiped, ...props }) => <ListItem {...props} />)`
+const deletingAnimation = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-200%);    
+  }
+`;
+
+const StyledListItem = styled(({ swiped, deleting, ...props }) => <ListItem {...props} />)`
   padding-bottom: 6px!important;
+  animation-name: ${deletingAnimation};
+  animation-duration: .4s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-play-state: ${({ deleting }) => deleting ? 'running' : 'paused'};
 `;
 
 class NotesListItem extends Component {
@@ -60,8 +74,7 @@ class NotesListItem extends Component {
   }
 
   render() {
-    const { note, swiped } = this.props;
-
+    const { note, swiped, deleting } = this.props;
     const [first, secondLine] = note.body.split(/\.|\n\n/g);
 
     return (
@@ -69,7 +82,7 @@ class NotesListItem extends Component {
         onSwipedRight={this.handleSwipeRight}
         onSwipedLeft={this.handleSwipeLeft}
       >
-        <StyledListItem onClick={this.handleItemPress}>
+        <StyledListItem deleting={deleting} onClick={this.handleItemPress}>
           <StyledListItemText
             swiped={swiped}
           >

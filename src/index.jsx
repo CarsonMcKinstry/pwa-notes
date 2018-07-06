@@ -16,7 +16,7 @@ import 'material-components-web/dist/material-components-web.min.css';
 ReactDOM.render(
   <Router history={history}>
     <Theme>
-      <Route path="/" component={App} />
+      <Route component={App} />
     </Theme>
   </Router>,
   document.getElementById('root')
