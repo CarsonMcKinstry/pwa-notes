@@ -298,7 +298,7 @@ module.exports = {
     new workboxPlugin.InjectManifest({
       swSrc: './src/sw.js',
       swDest: 'service-worker.js',
-      
+      importWorkboxFrom: 'disabled'
     }),
     // new workboxPlugin.GenerateSW(),
     // Moment.js is an extremely popular library that bundles large locale files
