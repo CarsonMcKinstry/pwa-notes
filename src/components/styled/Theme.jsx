@@ -32,6 +32,13 @@ injectGlobal`
 
   #root {
     height: 100%;
+    position: relative;
+    &> div {
+      position: inherit;
+    }
+    @media (display-mode: standalone) {
+      margin-top: 36px;
+    }
   }
   
   :root {

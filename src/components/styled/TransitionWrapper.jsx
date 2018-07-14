@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const TransitionWrapper = styled.div`
   position: absolute;
-  margin-top: 60px;
   top: 0;
   right: 0;
   bottom: 0;

@@ -2,14 +2,42 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
     <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/staticAssets/favicon.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="%PUBLIC_URL%/staticAssets/icon-96.jpg">
+    <link rel="apple-touch-icon" sizes="144x144" href="%PUBLIC_URL%/staticAssets/icon-144.jpg">
+    <link rel="apple-touch-icon" sizes="192x192" href="%PUBLIC_URL%/staticAssets/icon-192.jpg">
+    <link rel="apple-touch-icon" sizes="256x256" href="%PUBLIC_URL%/staticAssets/icon-256.jpg">
+    <link rel="apple-touch-icon" sizes="512x512" href="%PUBLIC_URL%/staticAssets/icon-512.jpg">
+
+    <link rel="apple-touch-startup-image" sizes="640x1136" href="%PUBLIC_URL%/staticAssets/splash-640x1136.jpg">
+    <link rel="apple-touch-startup-image" sizes="1136x640" href="%PUBLIC_URL%/staticAssets/splash-1136x64.jpg">
+    
+    <link rel="apple-touch-startup-image" sizes="750x1334" href="%PUBLIC_URL%/staticAssets/splash-750x1334.jpg">
+    <link rel="apple-touch-startup-image" sizes="1334x750" href="%PUBLIC_URL%/staticAssets/splash-1334x750.jpg">
+    
+    <link rel="apple-touch-startup-image" sizes="1125x2436" href="%PUBLIC_URL%/staticAssets/splash-1125x2436.jpg">
+    <link rel="apple-touch-startup-image" sizes="2436x1125" href="%PUBLIC_URL%/staticAssets/splash-2436x1125.jpg">
+
+    <link rel="apple-touch-startup-image" sizes="1242x2208" href="%PUBLIC_URL%/staticAssets/splash-1242x2208.jpg">
+    <link rel="apple-touch-startup-image" sizes="2208x1242" href="%PUBLIC_URL%/staticAssets/splash-2208x1242.jpg">
+
+    <link rel="apple-touch-startup-image" sizes="1536x2048" href="%PUBLIC_URL%/staticAssets/splash-1536x2048.jpg">
+    <link rel="apple-touch-startup-image" sizes="2048x1536" href="%PUBLIC_URL%/staticAssets/splash-2048x1536.jpg">
+
+    <link rel="apple-touch-startup-image" sizes="2224x1668" href="%PUBLIC_URL%/staticAssets/splash-2224x1668.jpg">
+    <link rel="apple-touch-startup-image" sizes="1668x2224" href="%PUBLIC_URL%/staticAssets/splash-1668x2224.jpg">
+
+    <link rel="apple-touch-startup-image" sizes="2732x2048" href="%PUBLIC_URL%/staticAssets/splash-2732x2048.jpg">
+    <link rel="apple-touch-startup-image" sizes="2048x2732" href="%PUBLIC_URL%/staticAssets/splash-2048x2732.jpg">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -25,6 +53,7 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+    <div style="width: 100%; height: 36px; background-color: #0d47a1; position: absolute; margin-top: -36px;"></div>
     <div id="root"></div>
     <!--
       This HTML file is a template.
