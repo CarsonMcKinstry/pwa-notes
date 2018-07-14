@@ -29,7 +29,7 @@ class App extends Component {
             event.userChoice.then((c) => {
               console.log('user choice', c);
             });
-            console.log ('prompting');
+            console.log('prompting');
             event.prompt().then(() => {
               console.log('installed');
             });
