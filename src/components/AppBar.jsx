@@ -116,8 +116,8 @@ class AppBar extends Component {
                   <ListDivider />
                   { installHandler !== null && (
                     <Fragment>
-                      <MenuItem>
-                        <ListItemGraphic use="get_app" onClick={installHandler} />
+                      <MenuItem onClick={installHandler}>
+                        <ListItemGraphic use="get_app" />
                         <ListItemText>
                           Get the App
                         </ListItemText>
