@@ -65,7 +65,8 @@ class AppBar extends Component {
   render() {
     const {
       history,
-      title
+      title,
+      installHandler
     } = this.props;
     const {
       menuOpen
@@ -112,6 +113,17 @@ class AppBar extends Component {
                     </MenuItem>
                   </StyledLink>
                   <ListDivider />
+                  { installHandler !== null && (
+                    <Fragment>
+                      <MenuItem>
+                        <ListItemGraphic use="get_app" onClick={installHandler} />
+                        <ListItemText>
+                          Get the App
+                        </ListItemText>
+                      </MenuItem>
+                      <ListDivider />
+                    </Fragment>
+                  )}
                   <StyledLink to="/trash">
                     <MenuItem onClick={() => this.setState({ menuOpen: false })}>
                       <ListItemGraphic use="delete" />

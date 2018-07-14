@@ -10,6 +10,32 @@ import transitionWrapper from './components/styled/TransitionWrapper';
 class App extends Component {
   state = {
     title: 'PWA Notes',
+    prompt: null, // eslint-disable-line
+    installHandler: null
+  }
+
+  componentDidMount() {
+    this.setState({
+      prompt: window.addEventListener('beforeinstallprompt', (e) => { // eslint-disable-line
+        console.log(e);
+        e.preventDefault();
+        const event = e;
+        e.userChoice.then(c => {
+          console.log(c);
+        });
+        this.setState({
+          installHandler: () => {
+            event.userChoice.then((c) => {
+              console.log('user choice', c);
+            });
+
+            event.prompt().then(() => {
+              console.log('installed');
+            });
+          }
+        });
+      })
+    });
   }
 
   setTitle = (title) => {
@@ -20,13 +46,13 @@ class App extends Component {
 
   render() {
     const { location } = this.props;
-    const { title } = this.state;
+    const { title, installHandler } = this.state;
     const direction = (location.pathname === '/' || location.pathname === '/trash')
       ? 'slide-backward'
       : 'slide-forward';
     return (
       <Fragment>
-        <AppBar title={title} />
+        <AppBar title={title} installHandler={installHandler} />
         <TransitionGroup>
           <CSSTransition
             key={location.pathname}
