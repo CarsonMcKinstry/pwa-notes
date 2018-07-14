@@ -60,7 +60,7 @@
   "scripts": {
     "start": "node index.js",
     "start:dev": "node scripts/start.js",
-    "prestart": "rm -r ./build; yarn build",
+    "prestart": "yarn build",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "lint": "eslint ./src"
