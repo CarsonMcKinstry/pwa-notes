@@ -118,14 +118,17 @@ class Note extends Component {
                 value={note.body}
                 debounceTimeout={1000}
                 onChange={this.handleNoteChange}
+                autoFocus
               />
             )
             : (
               <div
+                className="markdown-wrapper"
                 onClick={this.handleNoteClick}
                 onKeyDown={this.handleNoteClick}
                 role="textbox"
                 tabIndex={0}
+
               >
                 <StyledMarkdown
                   source={note.body}

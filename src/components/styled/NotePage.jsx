@@ -34,6 +34,9 @@ export const NotePage = styled(Swipeable)`
   @media screen and (min-width: ${breakpoint}) {
     height: calc(100% - 64px);
   }
+  .markdown-wrapper {
+    height: calc(100% - 36px);
+  }
 `;
 
 export const NoteTopBar = styled.div`
@@ -60,6 +63,7 @@ export const NoteArea = styled(props => <DebouncedInput {...props} element="text
     outline: 0;
     border: 0;
   }
+
 `;
 
 export const NoteDate = styled.p`
@@ -91,4 +95,5 @@ export const StyledMarkdown = styled(Markdown)`
   font-size: 1em;
   line-height: 1.5;
   box-sizing: border-box;
+  height: calc(100% - 36px);
 `;

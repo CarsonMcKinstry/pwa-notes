@@ -9,6 +9,7 @@ const TransitionWrapper = styled.div`
   left: 0;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   z-index: 1;
+  height: 100%;
   
   &.slide-forward-enter {
     transform: translateX(100%);
