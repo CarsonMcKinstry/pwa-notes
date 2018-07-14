@@ -71,6 +71,7 @@ class AppBar extends Component {
     const {
       menuOpen
     } = this.state;
+    console.log(installHandler);
     return (
       <Fragment>
         <ZIndexTopAppBar fixed>
