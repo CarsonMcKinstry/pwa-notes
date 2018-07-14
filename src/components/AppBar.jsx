@@ -21,6 +21,14 @@ import db from '../db';
 
 const ZIndexTopAppBar = styled(TopAppBar)`
   z-index: 1000;
+  ${'' /* position: fixed;
+  top: 0;
+  left: 0; */}
+  ${'' /* @media (display-mode: standalone) {
+    position: fixed;
+    top: 36px;
+    left: 0;
+  } */}
 `;
 
 const StyledLink = styled(Link)`
@@ -64,7 +72,7 @@ class AppBar extends Component {
     } = this.state;
     return (
       <Fragment>
-        <ZIndexTopAppBar>
+        <ZIndexTopAppBar fixed>
           <TopAppBarRow>
             <TopAppBarSection alignStart>
               { this.needsBackButton()

@@ -46,8 +46,15 @@ injectGlobal`
     --mdc-theme-secondary: ${baseTheme.secondary.base}!important;
   }
 
-`;
+  .statusbar {
+    height: 36px;
+    width: 100%;
+    position: fixed;
+    margin-top: -36px;
+    background-color: ${baseTheme.primary.base};
+  }
 
+`;
 
 const Theme = ({ children, theme }) => (
   <ThemeProvider
