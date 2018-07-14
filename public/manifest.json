@@ -18,7 +18,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "./",
+  "start_url": "https://react-pwa-notes.herokuapp.com",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
