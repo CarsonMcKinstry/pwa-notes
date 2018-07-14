@@ -25,10 +25,11 @@ class App extends Component {
         });
         this.setState({
           installHandler: () => {
+            console.log(event);
             event.userChoice.then((c) => {
               console.log('user choice', c);
             });
-
+            console.log ('prompting');
             event.prompt().then(() => {
               console.log('installed');
             });
