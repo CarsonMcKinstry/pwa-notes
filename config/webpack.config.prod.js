@@ -295,12 +295,11 @@ module.exports = {
     new ManifestPlugin({
       fileName: 'asset-manifest.json',
     }),
-    // new workboxPlugin.InjectManifest({
-    //   swSrc: './src/sw.js',
-    //   swDest: 'service-worker.js',
-    //   importWorkboxFrom: 'disabled'
-    // }),
-    new workboxPlugin.GenerateSW(),
+    new workboxPlugin.InjectManifest({
+      swSrc: './src/sw.js',
+      swDest: 'service-worker.js',
+      importWorkboxFrom: 'local'
+    }),
     // Moment.js is an extremely popular library that bundles large locale files
     // by default due to how Webpack interprets its code. This is a practical
     // solution that requires the user to opt into importing specific locales.
