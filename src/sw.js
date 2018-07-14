@@ -1,4 +1,4 @@
 /* eslint-disable */
 
-workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
+workbox.precaching.precacheAndRoute(self.__precacheManifest || [], {});
 
