@@ -17,6 +17,7 @@
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
     "eslint-loader": "^2.0.0",
+    "express": "^4.16.3",
     "extract-text-webpack-plugin": "3.0.2",
     "faker": "^4.1.0",
     "file-loader": "1.1.5",
@@ -57,7 +58,8 @@
     "workbox-webpack-plugin": "^3.3.1"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "node index.js",
+    "start:dev": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "lint": "eslint ./src"
