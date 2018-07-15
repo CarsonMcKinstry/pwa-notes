@@ -93,6 +93,11 @@ class AppBar extends Component {
               </TopAppBarTitle>
             </TopAppBarTitleSection>
             <TopAppBarSection alignEnd>
+              { installHandler !== null && (
+                <TopAppBarActionItem onClick={installHandler}>
+                  get_app
+                </TopAppBarActionItem>
+              )}
               <MenuAnchor>
                 <Menu
                   open={menuOpen}
@@ -114,17 +119,6 @@ class AppBar extends Component {
                     </MenuItem>
                   </StyledLink>
                   <ListDivider />
-                  { installHandler !== null && (
-                    <Fragment>
-                      <MenuItem onClick={installHandler}>
-                        <ListItemGraphic use="get_app" />
-                        <ListItemText>
-                          Get the App
-                        </ListItemText>
-                      </MenuItem>
-                      <ListDivider />
-                    </Fragment>
-                  )}
                   <StyledLink to="/trash">
                     <MenuItem onClick={() => this.setState({ menuOpen: false })}>
                       <ListItemGraphic use="delete" />
@@ -134,7 +128,6 @@ class AppBar extends Component {
                     </MenuItem>
                   </StyledLink>
                 </Menu>
-
                 <TopAppBarActionItem
                   onClick={_ => this.setState({ menuOpen: true })} //eslint-disable-line
                 >
