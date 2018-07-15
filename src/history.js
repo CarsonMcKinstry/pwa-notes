@@ -1,10 +1,12 @@
 /* global window, localStorage */
-import { createBrowserHistory, createHashHistory } from 'history';
+// import { createBrowserHistory, createHashHistory } from 'history';
+import { createHashHistory } from 'history';
 import moment from 'moment';
 
 export const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
 
-const history = isStandalone ? createHashHistory() : createBrowserHistory();
+// const history = isStandalone ? createHashHistory() : createBrowserHistory();
+const history = createHashHistory();
 
 export const attachLocationSaver = (
   expN = 10,
