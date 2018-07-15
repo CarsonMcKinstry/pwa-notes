@@ -18,23 +18,27 @@ class App extends Component {
     this.setState({
       prompt: window.addEventListener('beforeinstallprompt', (e) => { // eslint-disable-line
         console.log(e);
-        e.preventDefault();
-        const event = e;
+        e.prompt().then(() => {
+          console.log('attempting to install');
+        });
+        // console.log(e);
+        // e.preventDefault();
+        // const event = e;
         e.userChoice.then(c => {
-          console.log(c);
+          console.log('user choice', c);
         });
-        this.setState({
-          installHandler: () => {
-            console.log(event);
-            event.userChoice.then((c) => {
-              console.log('user choice', c);
-            });
-            console.log('prompting');
-            event.prompt().then(() => {
-              console.log('installed');
-            });
-          }
-        });
+        // this.setState({
+        //   installHandler: () => {
+        //     console.log(event);
+        //     event.userChoice.then((c) => {
+        //       console.log('user choice', c);
+        //     });
+        //     console.log('prompting');
+        //     event.prompt().then(() => {
+        //       console.log('installed');
+        //     });
+        //   }
+        // });
       })
     });
   }
