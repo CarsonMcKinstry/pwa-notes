@@ -65,11 +65,13 @@ class AppBar extends Component {
   render() {
     const {
       history,
-      title
+      title,
+      installHandler
     } = this.props;
     const {
       menuOpen
     } = this.state;
+    console.log(installHandler);
     return (
       <Fragment>
         <ZIndexTopAppBar fixed>
@@ -91,6 +93,11 @@ class AppBar extends Component {
               </TopAppBarTitle>
             </TopAppBarTitleSection>
             <TopAppBarSection alignEnd>
+              { installHandler !== null && (
+                <TopAppBarActionItem onClick={installHandler}>
+                  get_app
+                </TopAppBarActionItem>
+              )}
               <MenuAnchor>
                 <Menu
                   open={menuOpen}
@@ -121,7 +128,6 @@ class AppBar extends Component {
                     </MenuItem>
                   </StyledLink>
                 </Menu>
-
                 <TopAppBarActionItem
                   onClick={_ => this.setState({ menuOpen: true })} //eslint-disable-line
                 >

@@ -19,6 +19,7 @@ export const baseTheme = {
     dark: '#ba000d'
   }
 };
+const breakpoint = '600px';
 
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Roboto|Material+Icons');
@@ -35,6 +36,12 @@ injectGlobal`
     position: relative;
     &> div {
       position: inherit;
+      &:last-child {
+        height: calc(100% - 56px);
+        @media screen and (min-width: ${breakpoint}) {
+          height: calc(100% - 64px);
+        }
+      }
     }
     @media (display-mode: standalone) {
       margin-top: 36px;

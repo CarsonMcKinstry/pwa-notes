@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "React Notes",
+  "name": "React PWA notes",
   "icons": [
     {
       "src": "staticAssets/favicon.ico",
@@ -21,5 +21,5 @@
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "black-translucent"
+  "background_color": "#ffffff"
 }
