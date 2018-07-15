@@ -3,7 +3,7 @@
   "name": "React PWA notes",
   "icons": [
     {
-      "src": "staticAssets/favicon.ico",
+      "src": "staticAssets/favicon.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
     },
@@ -19,6 +19,7 @@
     }
   ],
   "start_url": "./index.html",
+  "scope":"/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
