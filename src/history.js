@@ -1,5 +1,5 @@
 /* global window, localStorage */
-// import { createBrowserHistory, createHashHistory } from 'history';
+
 import { createHashHistory } from 'history';
 import moment from 'moment';
 
